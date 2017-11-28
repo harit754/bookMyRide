@@ -1,0 +1,15 @@
+body{
+    font-family: Raleway;
+    }
+
+#showcase h1{
+    font-size: 40px;
+}
+
+.showcase-left img{
+    width:90%;
+        }
+
+    .showcase-right{
+        margin-top: 30PX;
+    }
