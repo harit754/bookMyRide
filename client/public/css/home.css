@@ -1,6 +1,6 @@
 body{
     font-family: Raleway;
-    }
+        }
 
 #showcase h1{
     font-size: 40px;
@@ -14,8 +14,27 @@ body{
         margin-top: 30PX;
     }
 
-    #testimonial{
+    #testimonial {
         margin-top: 40px;
         text-align: center;
         background: #f1f1f1;
-    }
+        padding: 50px 0 30px 0;
+            }
+#testimonial p {
+    font-size: 20px;
+    font-family: poppins;
+    color: rgb(90, 90, 90);
+}
+
+ #customer{
+    font-size: 15px !important;
+    color: rgb(119, 117, 117) !important;
+}
+.info-left img{
+    width: 90%;
+}
+
+.info1{
+    margin-top: 50px;
+}
+            
