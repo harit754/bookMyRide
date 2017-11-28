@@ -1,7 +1,9 @@
 body{
     font-family: Raleway;
         }
-
+.showcase{
+    margin-top: 20px;
+}
 #showcase h1{
      font-size: 40px;
 }
@@ -11,7 +13,7 @@ body{
         }
 
  .showcase-right{
-        margin-top: 30PX;
+        margin-top: 30pX;
     }
 
     #testimonial {
@@ -34,7 +36,14 @@ body{
     width: 90%;
 }
 
-.info1{
+.info1,.info2,#contact{
     margin-top: 50px;
+    margin-bottom: 50px;
 }
+
+#contact{
+    background: url(../client/public/images/audi.png);
+}
+
+
             
