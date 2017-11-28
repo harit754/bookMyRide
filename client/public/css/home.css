@@ -36,14 +36,23 @@ body{
     width: 90%;
 }
 
-.info1,.info2,#contact{
+.info1,.info2{
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
 #contact{
-    background: url(../client/public/images/audi.png);
+    background: url(../images/taxi1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    font-weight: bold;
 }
-
+#contact h2{
+    font-size: 32px;
+}
+.contact{
+    padding: 30px 0 30px 0;
+}
 
             
