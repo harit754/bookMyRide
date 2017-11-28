@@ -1,6 +1,8 @@
 <section id="showcase">
     <div class="container">
-        <navbar id="navanim"></navbar>
+        <div class="navanim">
+            <navbar></navbar>
+        </div>
         <div class="row showcase">
             <div class="col-md-6 col-sm-6">
                 <div class="showcase-left">
@@ -110,14 +112,16 @@
             </div>
         </div>
     </div>
-    <my-footer class="footer"></my-footer>
+    <div class="footanim">
+        <my-footer class="footer"></my-footer>
+    </div>
 </section>
 
 <script>
     window.sr = ScrollReveal();
-    sr.reveal('#navanim', {
+    sr.reveal('.navanim', {
         duration: 2000,
-        origin: 'bottom',
+        origin: 'left',
         distance: '300px'
     });
     sr.reveal('.showcase-left', {
@@ -131,7 +135,7 @@
         distance: '300px'
     });
     sr.reveal('.showcase-btn', {
-        duration: 1000,
+        duration: 2000,
         delay: 1000,
         origin: 'bottom',
         distance: '300px'
@@ -150,6 +154,11 @@
         duration: 2000,
         origin: 'right',
         distance: '300px',
+        viewFactor: 0.2
+    });
+    sr.reveal('.footanim', {
+        duration: 2000,
+        origin: 'bottom',
         viewFactor: 0.2
     });
 
