@@ -4,11 +4,15 @@ app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '../client/views/home.html',
-            controller: 'HomeController'
+            controller: 'homeCtrl'
         })
         .when('/home', {
             templateUrl: '../client/views/home.html',
-            controller: 'HomeController'
+            controller: 'homeCtrl'
+        })
+        .when('/booking', {
+            templateUrl: '../client/views/booking.html',
+            controller: 'bookingCtrl'
         })
         .when('/about', {
             templateUrl: '../client/views/about.html',
