@@ -1,1 +1,40 @@
-<h1>This My Booking Page</h1>
+<section id="showcase2">
+    <div class="container">
+        <div class="navanim">
+            <navbar></navbar>
+        </div>
+        <div class="row showcase2">
+            <div class="col-md-6 col-sm-6">
+                <div class="showcase2-left">
+                    <h1>Booking Details</h1>
+                    <br>
+                    <form>
+                        <div class="form-group">
+                            <label>Pickup Location</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter your Location">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="button">
+                                        <i class="fa fa-location-arrow"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Destination Location</label>
+                            <input type="text" class="form-control" id="destination" placeholder="Enter your Destination">
+                        </div>
+                        <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-dark showcase-btn">Get estimate</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="showcase2-right">
+                    <h1>Track your Booking</h1>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

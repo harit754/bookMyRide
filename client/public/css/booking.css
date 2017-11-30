@@ -1,0 +1,25 @@
+body{
+    font-family: Raleway;
+        }
+.showcase2{
+    margin-top: 60px;
+}
+#showcase2 h1{
+     font-size: 24px;
+     color: white;
+}
+.showcase2-left h1{
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    background-color: #708090;
+}
+.showcase2-right h1{
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0,0, 0.9);
+}
+.btn-secondary{
+    background-color: #708090 !important;
+}
