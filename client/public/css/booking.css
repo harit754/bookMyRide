@@ -23,3 +23,6 @@ body{
 .btn-secondary{
     background-color: #708090 !important;
 }
+.input-group-btn :hover{
+    cursor: pointer;
+  }

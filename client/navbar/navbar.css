@@ -12,4 +12,12 @@
 
 .navbar-brand span{
 	color:  #5383d3 !important;
-}
+} 
+
+.navbar-nav li :hover{
+    color:#000000;
+    font-weight: bold;
+    border-bottom: 2px solid;
+    border-bottom-color: #708090 !important;
+    border-bottom-width: 2px;
+       }
