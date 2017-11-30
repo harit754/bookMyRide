@@ -26,3 +26,8 @@ body{
 .input-group-btn :hover{
     cursor: pointer;
   }
+
+  #map {
+    height: 400px;
+    width: 100%;
+   }
