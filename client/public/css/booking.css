@@ -26,7 +26,16 @@ body{
 .input-group-btn :hover{
     cursor: pointer;
   }
+  .showcase-btn{
+    cursor: pointer;
+  }
   #map {
     height: 400px;
     width: 100%;
+    border-radius: 5px;
+}
+
+/* Box Effect */
+.box-effect
+{box-shadow: 0 4px 16px 0 #708090;
 }
