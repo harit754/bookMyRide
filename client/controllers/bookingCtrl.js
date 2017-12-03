@@ -169,10 +169,10 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     lng: position.coords.longitude
                 };
 
+
                 mapObj.pickMarker.setPosition(pos);
 
                 // infoWindow.setPosition(pos);
-                // infoWindow.setContent('Location found.');
                 mapObj.map.setCenter(pos);
 
                 updateMarkerPosition(mapObj.pickMarker.getPosition());
