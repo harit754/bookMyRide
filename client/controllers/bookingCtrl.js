@@ -7,12 +7,12 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             zoom: 16,
             center: pos
         });
-        var input = document.getElementById('pac-input');
-        var autocomplete = new google.maps.places.Autocomplete(input);
+        var inputPick = document.getElementById('pac-input');
+        var autocompletePick = new google.maps.places.Autocomplete(inputPick);
         // Bind the map's bounds (viewport) property to the autocomplete object,
         // so that the autocomplete requests use the current map bounds for the
         // bounds option in the request.
-        autocomplete.bindTo('bounds', map);
+        autocompletePick.bindTo('bounds', map);
 
         var infowindow = new google.maps.InfoWindow();
         var infowindowContent = document.getElementById('infowindow-content');
@@ -40,10 +40,10 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             }
         }
 
-        autocomplete.addListener('place_changed', function () {
+        autocompletePick.addListener('place_changed', function () {
             infowindow.close();
             marker.setVisible(false);
-            var place = autocomplete.getPlace();
+            var place = autocompletePick.getPlace();
             if (!place.geometry) {
                 // User entered the name of a Place that was not suggested and
                 // pressed the Enter key, or the Place Details request failed.
@@ -81,7 +81,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         // HTML5 geolocation.
         // Using MyLocation
         $scope.myLocation = function () {
-            input.value = "";
+            inputPick.value = "";
             if ($window.navigator.geolocation) {
                 $window.navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
