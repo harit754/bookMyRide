@@ -210,6 +210,31 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         }
     }
 
+    $scope.createRoute = function () {
+        //direction service
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        directionsDisplay.setMap(map);
+        var onChangeHandler = function () {
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        document.getElementById('mapObj.inputPick').addEventListener('change', onChangeHandler);
+        document.getElementById('mapObj.inputDrop').addEventListener('change', onChangeHandler);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+            origin: document.getElementById('mapObj.inputPick').value,
+            destination: document.getElementById('mapObj.inputDrop').value,
+            travelMode: 'DRIVING'
+        }, function (response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
 
     function geocodePosition(pos) {
         mapObj.geocoder.geocode({
