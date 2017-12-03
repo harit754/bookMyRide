@@ -35,7 +35,14 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         icon: manIcon
     });
 
+    mapObj.dropMarker = new google.maps.Marker({
+        draggable: true,
+        map: mapObj.map
+
+    });
+
     mapObj.pickInfoWindow = new google.maps.InfoWindow();
+    mapObj.dropInfoWindow = new google.maps.InfoWindow();
 
     /************global variables for map manipulation END ***************************/
 
@@ -48,7 +55,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         mapObj.autocompleteDrop.bindTo('bounds', mapObj.map);
 
         var infowindowContent = document.getElementById('infowindow-content');
-        mapObj.pickInfoWindow.setContent(infowindowContent);
+
 
         // var infoWindow = new google.maps.InfoWindow({ map: map });
 
@@ -63,7 +70,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                 mapObj.pickMarker.setAnimation(google.maps.Animation.BOUNCE);
             }
         });
-
+        //Auto complete for Pick
         google.maps.event.addListener(mapObj.autocompletePick, 'place_changed', function () {
             mapObj.pickInfoWindow.close();
             mapObj.pickMarker.setVisible(false);
@@ -100,8 +107,52 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             infowindowContent.children['place-icon'].src = place.icon;
             infowindowContent.children['place-name'].textContent = place.name;
             infowindowContent.children['place-address'].textContent = address;
+            mapObj.pickInfoWindow.setContent(infowindowContent);
+            mapObj.dropInfoWindow.close(mapObj.map, mapObj.dropMarker);
             mapObj.pickInfoWindow.open(mapObj.map, mapObj.pickMarker);
         }); //  END  mapObj.autocompletePick.addListener('place_changed' function()
+
+        //Auto complete for Drop
+        google.maps.event.addListener(mapObj.autocompleteDrop, 'place_changed', function () {
+            mapObj.dropInfoWindow.close();
+            mapObj.dropMarker.setVisible(false);
+            var place = mapObj.autocompleteDrop.getPlace();
+
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                mapObj.map.fitBounds(place.geometry.viewport);
+                mapObj.map.setZoom(18);
+            } else {
+                mapObj.map.setCenter(place.geometry.location);
+                mapObj.map.setZoom(17);  // Why 17? Because it looks good.
+            }
+
+            mapObj.dropMarker.setPosition(place.geometry.location);
+            mapObj.dropMarker.setVisible(true);
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+            infowindowContent.children['place-icon'].src = place.icon;
+            infowindowContent.children['place-name'].textContent = place.name;
+            infowindowContent.children['place-address'].textContent = address;
+            mapObj.dropInfoWindow.setContent(infowindowContent);
+            mapObj.pickInfoWindow.close(mapObj.map, mapObj.pickMarker);
+            mapObj.dropInfoWindow.open(mapObj.map, mapObj.dropMarker);
+        }); //autocomplete.Drop function ends here.
 
 
     } //initMap() Function ends here.
@@ -192,8 +243,8 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     function updateMarkerAddress(str) {
         document.getElementById('address').innerHTML = str;
-        //mapObj.inputPick.value = str;
-        //sunil
+        mapObj.inputPick.value = str;
+
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
