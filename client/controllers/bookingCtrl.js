@@ -26,7 +26,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     mapObj.inputPick = document.getElementById('pickLocation');
     mapObj.autocompletePick = new google.maps.places.Autocomplete(mapObj.inputPick);
     mapObj.inputDrop = document.getElementById('dropLocation');
-    mapObj.autocompleteDrop = new google.maps.places.Autocomplete(mapObj.inputPick);
+    mapObj.autocompleteDrop = new google.maps.places.Autocomplete(mapObj.inputDrop);
 
     mapObj.pickMarker = new google.maps.Marker({
         position: mapObj.initPos,
@@ -64,12 +64,11 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             }
         });
 
-        mapObj.autocompletePick.addListener('place_changed', function () {
+        google.maps.event.addListener(mapObj.autocompletePick, 'place_changed', function () {
             mapObj.pickInfoWindow.close();
             mapObj.pickMarker.setVisible(false);
             var place = mapObj.autocompletePick.getPlace();
-            //debugger;
-            alert('place change fired');
+
             if (!place.geometry) {
                 // User entered the name of a Place that was not suggested and
                 // pressed the Enter key, or the Place Details request failed.
