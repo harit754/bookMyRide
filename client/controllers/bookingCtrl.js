@@ -1,49 +1,75 @@
 angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window) {
+    /************global variables for map manipulation start ***************************/
+    var mapObj = {};
+
+    var carIcon = {
+        url: "./public/images/car.png", // url
+        scaledSize: new google.maps.Size(50, 25), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 32) // anchor
+    };
+    var manIcon = {
+        url: "./public/images/man8.png", // url
+        scaledSize: new google.maps.Size(70, 60), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(35, 60) // anchor
+    };
+
+
+    mapObj.initPos = { lat: 28.4595, lng: 77.0266 };
+    mapObj.map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: mapObj.initPos
+    });
+    mapObj.geocoder = new google.maps.Geocoder();
+
+    mapObj.inputPick = document.getElementById('pickLocation');
+    mapObj.autocompletePick = new google.maps.places.Autocomplete(mapObj.inputPick);
+    mapObj.inputDrop = document.getElementById('dropLocation');
+    mapObj.autocompleteDrop = new google.maps.places.Autocomplete(mapObj.inputPick);
+
+    mapObj.pickMarker = new google.maps.Marker({
+        position: mapObj.initPos,
+        draggable: true,
+        map: mapObj.map,
+        icon: manIcon
+    });
+
+    mapObj.pickInfoWindow = new google.maps.InfoWindow();
+
+    /************global variables for map manipulation END ***************************/
 
     $scope.initMap = function () {
-        var pos = { lat: 28.4595, lng: 77.0266 };
-        $scope.geocoder = new google.maps.Geocoder();
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
-            center: pos
-        });
-        var inputPick = document.getElementById('pac-input');
-        var autocompletePick = new google.maps.places.Autocomplete(inputPick);
+
         // Bind the map's bounds (viewport) property to the autocomplete object,
         // so that the autocomplete requests use the current map bounds for the
         // bounds option in the request.
-        autocompletePick.bindTo('bounds', map);
+        mapObj.autocompletePick.bindTo('bounds', mapObj.map);
+        mapObj.autocompleteDrop.bindTo('bounds', mapObj.map);
 
-        var infowindow = new google.maps.InfoWindow();
         var infowindowContent = document.getElementById('infowindow-content');
-        infowindow.setContent(infowindowContent);
+        mapObj.pickInfoWindow.setContent(infowindowContent);
+
         // var infoWindow = new google.maps.InfoWindow({ map: map });
-        var image = {
-            url: "./public/images/man8.png", // url
-            scaledSize: new google.maps.Size(70, 60), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(35, 60) // anchor
-        };
 
-        var marker = new google.maps.Marker({
-            position: pos,
-            draggable: true,
-            map: map,
-            icon: image
-        });
-        marker.addListener('click', toggleBounce);
-        function toggleBounce() {
-            if (marker.getAnimation() !== null) {
-                marker.setAnimation(null);
+        //  picmarker.setlocation.
+
+
+
+        mapObj.pickMarker.addListener('click', function () {
+            if (mapObj.pickMarker.getAnimation() !== null) {
+                mapObj.pickMarker.setAnimation(null);
             } else {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
+                mapObj.pickMarker.setAnimation(google.maps.Animation.BOUNCE);
             }
-        }
+        });
 
-        autocompletePick.addListener('place_changed', function () {
-            infowindow.close();
-            marker.setVisible(false);
-            var place = autocompletePick.getPlace();
+        mapObj.autocompletePick.addListener('place_changed', function () {
+            mapObj.pickInfoWindow.close();
+            mapObj.pickMarker.setVisible(false);
+            var place = mapObj.autocompletePick.getPlace();
+            //debugger;
+            alert('place change fired');
             if (!place.geometry) {
                 // User entered the name of a Place that was not suggested and
                 // pressed the Enter key, or the Place Details request failed.
@@ -53,14 +79,15 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
             // If the place has a geometry, then present it on a map.
             if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-                map.setZoom(18);
+                mapObj.map.fitBounds(place.geometry.viewport);
+                mapObj.map.setZoom(18);
             } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);  // Why 17? Because it looks good.
+                mapObj.map.setCenter(place.geometry.location);
+                mapObj.map.setZoom(17);  // Why 17? Because it looks good.
             }
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
+
+            mapObj.pickMarker.setPosition(place.geometry.location);
+            mapObj.pickMarker.setVisible(true);
 
             var address = '';
             if (place.address_components) {
@@ -74,83 +101,75 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             infowindowContent.children['place-icon'].src = place.icon;
             infowindowContent.children['place-name'].textContent = place.name;
             infowindowContent.children['place-address'].textContent = address;
-            infowindow.open(map, marker);
-        });
+            mapObj.pickInfoWindow.open(mapObj.map, mapObj.pickMarker);
+        }); //  END  mapObj.autocompletePick.addListener('place_changed' function()
 
-
-        // HTML5 geolocation.
-        // Using MyLocation
-        $scope.myLocation = function () {
-            inputPick.value = "";
-            if ($window.navigator.geolocation) {
-                $window.navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    var marker = new google.maps.Marker({
-                        position: pos,
-                        draggable: true,
-                        map: map,
-                        icon: image,
-                        title: 'Your position'
-                    });
-
-                    // infoWindow.setPosition(pos);
-                    // infoWindow.setContent('Location found.');
-                    map.setCenter(pos);
-
-                    updateMarkerPosition(marker.getPosition());
-                    geocodePosition(pos);
-
-                    // Add dragging event listeners.
-                    google.maps.event.addListener(marker, 'dragstart', function () {
-                        updateMarkerAddress('Dragging...');
-                    });
-
-                    google.maps.event.addListener(marker, 'drag', function () {
-                        updateMarkerStatus('Dragging...');
-                        updateMarkerPosition(marker.getPosition());
-                    });
-
-                    google.maps.event.addListener(marker, 'dragend', function () {
-                        updateMarkerStatus('Drag ended');
-                        geocodePosition(marker.getPosition());
-                        map.panTo(marker.getPosition());
-                    });
-
-                    google.maps.event.addListener(map, 'click', function (e) {
-                        updateMarkerPosition(e.latLng);
-                        geocodePosition(marker.getPosition());
-                        marker.setPosition(e.latLng);
-                        map.panTo(marker.getPosition());
-                    });
-
-                }, function () {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-        }
-        var icon = {
-            url: "./public/images/car.png", // url
-            scaledSize: new google.maps.Size(50, 25), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 32) // anchor
-        };
-        var image = {
-            url: "./public/images/man8.png", // url
-            scaledSize: new google.maps.Size(70, 60), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(35, 60) // anchor
-        };
 
     } //initMap() Function ends here.
 
+
+    // HTML5 geolocation.
+    // Using MyLocation
+    $scope.myLocation = function () {
+        mapObj.inputPick.value = "";
+        if ($window.navigator.geolocation) {
+            $window.navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                // var marker = new google.maps.Marker({
+                //     position: pos,
+                //     draggable: true,
+                //     map: map,
+                //     icon: manIcon,
+                //     title: 'Your position'
+                // });
+
+                mapObj.pickMarker.setPosition(pos);
+
+                // infoWindow.setPosition(pos);
+                // infoWindow.setContent('Location found.');
+                mapObj.map.setCenter(pos);
+
+                updateMarkerPosition(mapObj.pickMarker.getPosition());
+                geocodePosition(pos);
+
+                // Add dragging event listeners.
+                google.maps.event.addListener(mapObj.pickMarker, 'dragstart', function () {
+                    updateMarkerAddress('Dragging...');
+                });
+
+                google.maps.event.addListener(mapObj.pickMarker, 'drag', function () {
+                    updateMarkerStatus('Dragging...');
+                    updateMarkerPosition(mapObj.pickMarker.getPosition());
+                });
+
+                google.maps.event.addListener(mapObj.pickMarker, 'dragend', function () {
+                    updateMarkerStatus('Drag ended');
+                    geocodePosition(mapObj.pickMarker.getPosition());
+                    mapObj.map.panTo(mapObj.pickMarker.getPosition());
+                });
+
+                google.maps.event.addListener(map, 'click', function (e) {
+                    updateMarkerPosition(e.latLng);
+                    geocodePosition(mapObj.pickMarker.getPosition());
+                    marker.setPosition(e.latLng);
+                    mapObj.map.panTo(mapObj.pickMarker.getPosition());
+                });
+
+            }, function () {
+                handleLocationError(true, infoWindow, mapObj.map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, mapObj.map.getCenter());
+        }
+    }
+
+
     function geocodePosition(pos) {
-        $scope.geocoder.geocode({
+        mapObj.geocoder.geocode({
             latLng: pos
         }, function (responses) {
             if (responses && responses.length > 0) {
@@ -174,6 +193,8 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     function updateMarkerAddress(str) {
         document.getElementById('address').innerHTML = str;
+        //mapObj.inputPick.value = str;
+        //sunil
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
