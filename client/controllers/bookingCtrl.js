@@ -210,7 +210,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         }
     }
 
-    $scope.createRoute = function () {
+    $scope.estimate = function () {
         //direction service
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
