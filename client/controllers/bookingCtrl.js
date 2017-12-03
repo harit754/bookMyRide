@@ -168,13 +168,6 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-                // var marker = new google.maps.Marker({
-                //     position: pos,
-                //     draggable: true,
-                //     map: map,
-                //     icon: manIcon,
-                //     title: 'Your position'
-                // });
 
                 mapObj.pickMarker.setPosition(pos);
 
