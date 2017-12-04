@@ -183,6 +183,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             infowindowContent.children['place-name'].textContent = place.name;
             infowindowContent.children['place-address'].textContent = address;
             mapObj.dropInfoWindow.setContent(infowindowContent);
+
             mapObj.pickInfoWindow.close(mapObj.map, mapObj.pickMarker);
             mapObj.dropInfoWindow.open(mapObj.map, mapObj.dropMarker);
         }); //autocomplete.Drop function ends here.
@@ -236,9 +237,13 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+        var origin = mapObj.pickPos || mapObj.inputPick.value;
+        var destination = mapObj.dropPos || mapObj.inputDrop.value;
+
         directionsService.route({
-            origin: mapObj.inputPick.value,
-            destination: mapObj.inputDrop.value,
+            origin: origin,
+            destination: destination,
             travelMode: 'DRIVING'
         }, function (response, status) {
             if (status === 'OK') {
