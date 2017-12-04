@@ -47,9 +47,36 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     });
 
+    initMarkerEvents(mapObj.pickMarker, mapObj.inputPick);
+    initMarkerEvents(mapObj.dropMarker, mapObj.inputDrop);
+
     mapObj.pickInfoWindow = new google.maps.InfoWindow();
     mapObj.dropInfoWindow = new google.maps.InfoWindow();
 
+    function initMarkerEvents(marker, input) {
+        google.maps.event.addListener(marker, 'dragstart', function () {
+            updateMarkerAddress('Dragging...');
+        });
+
+        google.maps.event.addListener(marker, 'drag', function () {
+            updateMarkerStatus('Dragging...');
+            updateMarkerPosition(marker.getPosition());
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            updateMarkerStatus('Drag ended');
+            geocodePosition(marker.getPosition(), input);
+            mapObj.map.panTo(marker.getPosition());
+        });
+
+        google.maps.event.addListener(mapObj.map, 'click', function (e) {
+            updateMarkerPosition(e.latLng);
+            geocodePosition(marker.getPosition(), input);
+            marker.setPosition(e.latLng);
+            mapObj.map.panTo(marker.getPosition());
+        });
+
+    }
     /************global variables for map manipulation END ***************************/
 
     $scope.initMap = function () {
@@ -175,7 +202,9 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     lng: position.coords.longitude
                 };
 
-                createDragMarker(mapObj.pickMarker, pos);
+                createDragMarker(mapObj.pickMarker, pos, mapObj.inputPick);
+
+                mapObj.inputPick.value = mapObj.pinAddress;
             }, function () {
                 handleLocationError(true, infoWindow, mapObj.map.getCenter());
             });
@@ -186,39 +215,14 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     };
 
 
-    function createDragMarker(marker, pos) {
-
-
+    function createDragMarker(marker, pos, input) {
         marker.setPosition(pos);
 
         // infoWindow.setPosition(pos);
         mapObj.map.setCenter(pos);
 
         updateMarkerPosition(marker.getPosition());
-        geocodePosition(pos);
-
-        // Add dragging event listeners.
-        google.maps.event.addListener(marker, 'dragstart', function () {
-            updateMarkerAddress('Dragging...');
-        });
-
-        google.maps.event.addListener(marker, 'drag', function () {
-            updateMarkerStatus('Dragging...');
-            updateMarkerPosition(marker.getPosition());
-        });
-
-        google.maps.event.addListener(marker, 'dragend', function () {
-            updateMarkerStatus('Drag ended');
-            geocodePosition(marker.getPosition());
-            mapObj.map.panTo(marker.getPosition());
-        });
-
-        google.maps.event.addListener(mapObj.map, 'click', function (e) {
-            updateMarkerPosition(e.latLng);
-            geocodePosition(marker.getPosition());
-            marker.setPosition(e.latLng);
-            mapObj.map.panTo(marker.getPosition());
-        });
+        geocodePosition(pos, input);
 
 
     } //end function createDragMarker() //
@@ -245,12 +249,13 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         });
     }
 
-    function geocodePosition(pos) {
+    function geocodePosition(pos, input) {
         mapObj.geocoder.geocode({
             latLng: pos
         }, function (responses) {
             if (responses && responses.length > 0) {
                 updateMarkerAddress(responses[0].formatted_address);
+                input.value = responses[0].formatted_address;
             } else {
                 updateMarkerAddress('Cannot determine address at this location.');
             }
@@ -270,9 +275,8 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     function updateMarkerAddress(str) {
         document.getElementById('address').innerHTML = str;
-        mapObj.inputPick.value = str;
-
     }
+
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
