@@ -175,38 +175,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     lng: position.coords.longitude
                 };
 
-
-                mapObj.pickMarker.setPosition(pos);
-
-                // infoWindow.setPosition(pos);
-                mapObj.map.setCenter(pos);
-
-                updateMarkerPosition(mapObj.pickMarker.getPosition());
-                geocodePosition(pos);
-
-                // Add dragging event listeners.
-                google.maps.event.addListener(mapObj.pickMarker, 'dragstart', function () {
-                    updateMarkerAddress('Dragging...');
-                });
-
-                google.maps.event.addListener(mapObj.pickMarker, 'drag', function () {
-                    updateMarkerStatus('Dragging...');
-                    updateMarkerPosition(mapObj.pickMarker.getPosition());
-                });
-
-                google.maps.event.addListener(mapObj.pickMarker, 'dragend', function () {
-                    updateMarkerStatus('Drag ended');
-                    geocodePosition(mapObj.pickMarker.getPosition());
-                    mapObj.map.panTo(mapObj.pickMarker.getPosition());
-                });
-
-                google.maps.event.addListener(map, 'click', function (e) {
-                    updateMarkerPosition(e.latLng);
-                    geocodePosition(mapObj.pickMarker.getPosition());
-                    marker.setPosition(e.latLng);
-                    mapObj.map.panTo(mapObj.pickMarker.getPosition());
-                });
-
+                createDragMarker(mapObj.pickMarker, pos);
             }, function () {
                 handleLocationError(true, infoWindow, mapObj.map.getCenter());
             });
@@ -214,7 +183,45 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, mapObj.map.getCenter());
         }
-    }
+    };
+
+
+    function createDragMarker(marker, pos) {
+
+
+        marker.setPosition(pos);
+
+        // infoWindow.setPosition(pos);
+        mapObj.map.setCenter(pos);
+
+        updateMarkerPosition(marker.getPosition());
+        geocodePosition(pos);
+
+        // Add dragging event listeners.
+        google.maps.event.addListener(marker, 'dragstart', function () {
+            updateMarkerAddress('Dragging...');
+        });
+
+        google.maps.event.addListener(marker, 'drag', function () {
+            updateMarkerStatus('Dragging...');
+            updateMarkerPosition(marker.getPosition());
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            updateMarkerStatus('Drag ended');
+            geocodePosition(marker.getPosition());
+            mapObj.map.panTo(marker.getPosition());
+        });
+
+        google.maps.event.addListener(mapObj.map, 'click', function (e) {
+            updateMarkerPosition(e.latLng);
+            geocodePosition(marker.getPosition());
+            marker.setPosition(e.latLng);
+            mapObj.map.panTo(marker.getPosition());
+        });
+
+
+    } //end function createDragMarker() //
 
     $scope.estimate = function () {
         //direction service
