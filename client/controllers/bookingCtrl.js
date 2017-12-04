@@ -1,5 +1,11 @@
 angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window) {
     /************global variables for map manipulation start ***************************/
+
+
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+
+
     var mapObj = {};
 
     var carIcon = {
@@ -212,20 +218,16 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     $scope.estimate = function () {
         //direction service
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        directionsDisplay.setMap(map);
-        var onChangeHandler = function () {
-            calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
-        document.getElementById('mapObj.inputPick').addEventListener('change', onChangeHandler);
-        document.getElementById('mapObj.inputDrop').addEventListener('change', onChangeHandler);
+        directionsDisplay.setMap(mapObj.map);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         directionsService.route({
-            origin: document.getElementById('mapObj.inputPick').value,
-            destination: document.getElementById('mapObj.inputDrop').value,
+            origin: mapObj.inputPick.value,
+            destination: mapObj.inputDrop.value,
             travelMode: 'DRIVING'
         }, function (response, status) {
             if (status === 'OK') {
