@@ -17,5 +17,9 @@ app.config(function ($routeProvider, $locationProvider) {
         .when('/about', {
             templateUrl: './views/about.html',
 
+        })
+        .when('/login', {
+            templateUrl: './views/login.html',
+            controller: 'loginCtrl'
         });
 });
