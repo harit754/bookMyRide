@@ -17,6 +17,7 @@
 .navbar-nav li :hover{
     color:#000000;
     font-weight: bold;
+    /* font-size: 17px; */
     border-bottom: 2px solid;
     border-bottom-color: #708090 !important;
     border-bottom-width: 2px;
