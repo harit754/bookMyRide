@@ -22,7 +22,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     };
 
 
-    mapObj.initPos = { lat: 28.4595, lng: 77.0266 };
+    mapObj.initPos = { lat: 20.5937, lng: 78.9629 };
     mapObj.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: mapObj.initPos
@@ -141,7 +141,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             infowindowContent.children['place-name'].textContent = place.name;
             infowindowContent.children['place-address'].textContent = address;
             mapObj.pickInfoWindow.setContent(infowindowContent);
-            mapObj.dropInfoWindow.close(mapObj.map, mapObj.dropMarker);
+            // mapObj.dropInfoWindow.close(mapObj.map, mapObj.dropMarker);
             mapObj.pickInfoWindow.open(mapObj.map, mapObj.pickMarker);
         }); //  END  mapObj.autocompletePick.addListener('place_changed' function()
 
@@ -184,11 +184,11 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             infowindowContent.children['place-address'].textContent = address;
             mapObj.dropInfoWindow.setContent(infowindowContent);
 
-            mapObj.pickInfoWindow.close(mapObj.map, mapObj.pickMarker);
+            // mapObj.pickInfoWindow.close(mapObj.map, mapObj.pickMarker);
             mapObj.dropInfoWindow.open(mapObj.map, mapObj.dropMarker);
         }); //autocomplete.Drop function ends here.
 
-
+        $scope.myLocation();
     } //initMap() Function ends here.
 
 
@@ -202,10 +202,26 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+                var infowindow = mapObj.pickInfoWindow;
 
-                createDragMarker(mapObj.pickMarker, pos, mapObj.inputPick);
+                mapObj.geocoder.geocode({ 'location': pos }, function (results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            mapObj.map.setZoom(16);
+                            createDragMarker(mapObj.pickMarker, pos, mapObj.inputPick);
 
-                mapObj.inputPick.value = mapObj.pinAddress;
+                            mapObj.inputPick.value = mapObj.pinAddress;
+                            infowindow.setContent(results[0].formatted_address);
+                            infowindow.open(mapObj.map, mapObj.pickMarker);
+                        } else {
+                            window.alert('No results found');
+                        }
+                    } else {
+                        window.alert('Geocoder failed due to: ' + status);
+                    }
+                });
+
+
             }, function () {
                 handleLocationError(true, infoWindow, mapObj.map.getCenter());
             });
@@ -261,6 +277,11 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             if (responses && responses.length > 0) {
                 updateMarkerAddress(responses[0].formatted_address);
                 input.value = responses[0].formatted_address;
+
+                mapObj.pickInfoWindow.setContent(mapObj.inputPick.value);
+                mapObj.dropInfoWindow.setContent(mapObj.inputDrop.value);
+
+
             } else {
                 updateMarkerAddress('Cannot determine address at this location.');
             }
