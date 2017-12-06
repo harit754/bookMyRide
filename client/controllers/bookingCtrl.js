@@ -254,9 +254,12 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
-        var origin = mapObj.pickPos || mapObj.inputPick.value;
-        var destination = mapObj.dropPos || mapObj.inputDrop.value;
+        var pickPos = mapObj.pickMarker.getPosition();
+        var dropPos = mapObj.dropMarker.getPosition();
 
+        var origin = pickPos || mapObj.inputPick.value;
+        var destination = dropPos || mapObj.inputDrop.value;
+        // alert(JSON.stringify(origin));
         directionsService.route({
             origin: origin,
             destination: destination,
