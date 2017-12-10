@@ -2,13 +2,103 @@
     <div id="navanim">
         <navbar></navbar>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-sm-3"></div>
+        <!-- //sign-up -->
+        <div class="sign-up col-md-6 col-sm-6 box-effect" ng-hide="show()">
+            <div class="row">
+                <div class="col">
+                    <span class="heading">
+                        <h1>Sign Up Now</h1>
+                    </span>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-outline-warning btn-sm" ng-click="show()">login</button>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Last name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> Remember me
+                    </label>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-success btn-lg">Sign Up</button>
+                </div>
+            </form>
+        </div>
+        <!-- Login -->
+        <div class="log-in col-md-6 col-sm-6 box-effect" ng-show="show()">
+            <div class="row">
+                <div class="col">
+                    <span class="heading">
+                        <h1>Log In</h1>
+                    </span>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-outline-warning btn-sm">Sign Up</button>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> Remember me
+                    </label>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-success btn-lg">Log In</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3 col-sm-3"></div>
+    </div>
 </div>
+
+
+<div class="footanim2">
+    <my-footer class="footer"></my-footer>
+</div>
+
+
+
+
 
 <script>
     window.sr = ScrollReveal();
     sr.reveal('#navanim', {
         duration: 2000,
         origin: 'left',
+        distance: '300px'
+    });
+    sr.reveal('.footanim2', {
+        duration: 2000,
+        origin: 'bottom',
+        viewFactor: 0.2
+    });
+    sr.reveal('.box-effect', {
+        duration: 2000,
+        origin: 'right',
         distance: '300px'
     });
 </script>

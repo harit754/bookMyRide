@@ -1,1 +1,26 @@
- 
+ .form-group input{width: 500px;}
+ .form-group .btn-lg {width: 500px;}
+ .btn-sm {
+    margin-top: 30px;
+    margin-left: 200px;
+     }
+ .sign-up h1 {
+              color: white;
+              padding: 20px 0 20px 0;                        
+            }
+ .log-in h1 {
+                color: white;
+                padding: 20px 0 20px 0;                        
+              }
+          
+ .sign-up {background-color: rgba(0, 0, 0, 0.8);
+           color: white;
+            margin-top: 80px;
+            border-radius: 5px;
+            }
+
+ .log-in{background-color: rgba(0, 0, 0, 0.8);
+         color: white;
+         margin-top: 80px;
+         border-radius: 5px;
+        }
