@@ -20,31 +20,31 @@
             <form>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="First name">
+                        <input type="text" class="form-control" placeholder="First name" ng-model="newUser.firstName">
                         <i class="fa fa-user input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Last name">
+                        <input type="text" class="form-control" placeholder="Last name" ng-model="newUser.lastName">
                         <i class="fa fa-user input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Phone Number">
+                        <input type="text" class="form-control" placeholder="Phone Number" ng-model="newUser.phoneNumber">
                         <i class="fa fa-phone input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email Address" ng-model="newUser.emailAddress">
                         <i class="fa fa-envelope input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" ng-model="newUser.password">
                         <i class="fa fa-key input-group-addon"></i>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
                 <br>
                 <div class="form-group terms">
-                    <button type="button" class="btn btn-outline-success btn-lg">Sign Up</button>
+                    <button type="button" class="btn btn-outline-success btn-lg" ng-click="signUp()">Sign Up</button>
                     <br>
                     <p>By signing up, you agree to our
                         <a href="#">terms & conditions</a> of use, privacy policy, and cookie policy.</p>
