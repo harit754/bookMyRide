@@ -1,25 +1,40 @@
 var express = require('express');
 var router = express.Router();
-var user = require('./server/models/user');
+var user = require('../models/user.js');
+var bcrypt = require('bcrypt');
 
 router.post('/sign-up', function (req, res) {
     console.log(req.body);
-    var NewUser = new user({
-        role: 'User',
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        password: req.body.password
-    });
-    NewUser.save(function (err, data) {
+
+
+    bcrypt.hash(req.body.password, 5, function (err, hashPassword) {
         if (err) {
             throw err;
         } else {
-            console.log('New User Added Successfully');
-            res.end();
+            var NewUser = new user({
+                role: 'User',
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                phoneNumber: req.body.phoneNumber,
+                password: hashPassword
+            });
+
+            // Store hash in your password DB.
+            NewUser.save(function (err, data) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log('New User Added Successfully');
+                    res.end();
+                }
+            });
         }
     });
+
+
+
+
 });
 
 router.post('/add-driver', function (req, res) {

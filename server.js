@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var routerobj = require('./server/routes/routes');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.use(logger('dev'));

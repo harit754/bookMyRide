@@ -10,8 +10,10 @@
   "author": "Ayush Pratap",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "mongoose": "^4.13.6",
     "morgan": "^1.9.0",
     "nodemon": "^1.12.1"
   }
