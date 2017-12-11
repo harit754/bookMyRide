@@ -4,6 +4,9 @@ angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $l
     $scope.loginUser = {};
     $scope.signUp = function () {
         this.newUser.role = 'User';
-
+        $http.post('/user/sign-up', $scope.newUser).then(function (response) {
+            console.log('Data Saved Successfully');
+            alert('Data Saved Successfully');
+        });
     }
 });
