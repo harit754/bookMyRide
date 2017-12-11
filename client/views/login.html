@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-3 col-sm-3"></div>
         <!-- //sign-up -->
-        <div class="sign-up col-md-6 col-sm-6 box-effect" ng-hide="show()">
+        <div class="sign-up col-md-6 col-sm-6 box-effect" ng-hide="showLogin">
             <div class="row">
                 <div class="col">
                     <span class="heading">
@@ -14,21 +14,39 @@
                     </span>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-outline-warning btn-sm" ng-click="show()">login</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" ng-click="showLogin=true">login</button>
                 </div>
             </div>
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First name">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="First name">
+                        <i class="fa fa-user input-group-addon"></i>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last name">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Last name">
+                        <i class="fa fa-user input-group-addon"></i>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Phone Number">
+                        <i class="fa fa-phone input-group-addon"></i>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email">
+                        <i class="fa fa-envelope input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                        <i class="fa fa-key input-group-addon"></i>
+                    </div>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -36,13 +54,16 @@
                     </label>
                 </div>
                 <br>
-                <div class="form-group">
+                <div class="form-group terms">
                     <button type="button" class="btn btn-outline-success btn-lg">Sign Up</button>
+                    <br>
+                    <p>By signing up, you agree to our
+                        <a href="#">terms & conditions</a> of use, privacy policy, and cookie policy.</p>
                 </div>
             </form>
         </div>
         <!-- Login -->
-        <div class="log-in col-md-6 col-sm-6 box-effect" ng-show="show()">
+        <div class="log-in col-md-6 col-sm-6 box-effect" ng-show="showLogin">
             <div class="row">
                 <div class="col">
                     <span class="heading">
@@ -50,15 +71,21 @@
                     </span>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-outline-warning btn-sm">Sign Up</button>
+                    <button type="button" ng-click="showLogin=false" class="btn btn-outline-warning btn-sm">Sign Up</button>
                 </div>
             </div>
             <form>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email">
+                        <i class="fa fa-user input-group-addon"></i>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                        <i class="fa fa-key input-group-addon"></i>
+                    </div>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">

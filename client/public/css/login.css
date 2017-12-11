@@ -1,5 +1,14 @@
- .form-group input{width: 500px;}
+ .form-group input {width: 500px;}
+ .input-group {width: 500px;}
  .form-group .btn-lg {width: 500px;}
+ .terms p{color: white;
+text-align: center;
+padding: 10px;
+font-size: 12px;
+margin-top: 10px; 
+margin-left: 10px;
+width: 500px;
+      }
  .btn-sm {
     margin-top: 30px;
     margin-left: 200px;
@@ -13,13 +22,13 @@
                 padding: 20px 0 20px 0;                        
               }
           
- .sign-up {background-color: rgba(0, 0, 0, 0.8);
+ .sign-up {background-color: rgba(0, 0, 0, 0.9);
            color: white;
             margin-top: 80px;
             border-radius: 5px;
             }
 
- .log-in{background-color: rgba(0, 0, 0, 0.8);
+ .log-in{background-color: rgba(0, 0, 0, 0.9);
          color: white;
          margin-top: 80px;
          border-radius: 5px;
