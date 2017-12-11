@@ -1,6 +1,7 @@
  .form-group input {width: 500px;}
  .input-group {width: 500px;}
- .form-group .btn-lg {width: 500px;}
+ .form-group .btn-lg {width: 500px;
+cursor: pointer;}
  .terms p{color: white;
 text-align: center;
 padding: 10px;
@@ -12,7 +13,9 @@ width: 500px;
  .btn-sm {
     margin-top: 30px;
     margin-left: 200px;
+    cursor: pointer;
      }
+  
  .sign-up h1 {
               color: white;
               padding: 20px 0 20px 0;                        
