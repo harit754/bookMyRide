@@ -36,3 +36,12 @@ width: 500px;
          margin-top: 80px;
          border-radius: 5px;
         }
+
+ .login-box {
+   background-color:black;
+   background: url(../images/taxi2.jpg);
+   background-repeat: no-repeat;
+   background-size: cover;
+   border-radius: 5px;
+   padding-bottom: 70px;
+   }
