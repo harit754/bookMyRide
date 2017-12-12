@@ -6,8 +6,9 @@ angular.module('bookMyRide').controller('driver-cabCtrl', function ($scope, $htt
     }
 
     $scope.addDriver = function () {
+        alert('hello');
         this.newUser.role = 'Driver';
-        $http.post('/user/sign-up', $scope.newUser).then(function (response) {
+        $http.post('/user/add-driver', $scope.newUser).then(function (response) {
             console.log('Data Saved Successfully');
             init();
         });
