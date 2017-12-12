@@ -16,4 +16,35 @@
                padding: 10px;
               }
 
-.profile-pic i, span{font-size: 32px;}
+.profile-pic span{font-size: 23px; margin-top: 60px;}
+                    
+.profile-pic i {font-size: 22px; margin-top: 40px;}    
+
+.profile-pic:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.profile-pic {
+    background-image: url(../images/profilepic1.jpg);
+    border-radius: 50%;
+    margin-left: 160px;
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.profile-pic span {
+    display: inline-block;
+   }
