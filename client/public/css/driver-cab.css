@@ -48,3 +48,6 @@
 .profile-pic span {
     display: inline-block;
    }
+
+   .custom-file-input{height: 60px; width: 100px;border-radius: 50%;
+cursor: pointer;}

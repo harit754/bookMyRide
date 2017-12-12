@@ -12,7 +12,71 @@
                 <div class="profile-pic">
                     <span>
                         <i class="fa fa-camera"></i> Change Image</span>
+                    <input type="file" id="file2" class="custom-file-input">
                 </div>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="First name" ng-model="newUser.firstName">
+                            <i class="fa fa-user input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Last name" ng-model="newUser.lastName">
+                            <i class="fa fa-user input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Phone Number" ng-model="newUser.phoneNumber">
+                            <i class="fa fa-phone input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email Address" ng-model="newUser.email">
+                            <i class="fa fa-envelope input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Password" ng-model="newUser.password">
+                            <i class="fa fa-key input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="License No" ng-model="newUser.licenseNo">
+                            <i class="fa fa-book input-group-addon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="License Expiry Date" ng-model="newUser.licenseExp">
+                            <i class="fa fa-book input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Years Of Experience" ng-model="newUser.experience">
+                            <i class="fa fa-bolt input-group-addon"></i>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" style="color:black; font-weight:bold"> Remember me
+                        </label>
+                    </div>
+                    <br>
+                    <div class="form-group terms">
+                        <button type="button" class="btn btn-dark btn-lg" ng-click="addDriver()">Add Driver</button>
+                        <br>
+                        <p>By signing up, you agree to our
+                            <a href="#">terms & conditions</a> of use, privacy policy, and cookie policy.</p>
+                    </div>
+                </form>
             </div>
             <div class="col-md-3 col-sm-3"></div>
         </div>
