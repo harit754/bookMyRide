@@ -18,6 +18,14 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: './views/about.html',
 
         })
+        .when('/driver-cab', {
+            templateUrl: './views/driver-cab.html',
+
+        })
+        .when('/tariff', {
+            templateUrl: './views/tariff.html',
+
+        })
         .when('/login', {
             templateUrl: './views/login.html',
             controller: 'loginCtrl'
