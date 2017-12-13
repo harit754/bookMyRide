@@ -20,7 +20,7 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/driver-cab', {
             templateUrl: './views/driver-cab.html',
-
+            controller: 'driver-cabCtrl'
         })
         .when('/tariff', {
             templateUrl: './views/tariff.html',
