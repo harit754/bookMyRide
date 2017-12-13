@@ -4,7 +4,11 @@ angular.module('bookMyRide').controller('driver-cabCtrl', function ($scope, $htt
         $scope.showCab = true;
         $scope.newUser = {};
     }
+    $scope.getBackgroundImage = function () {
+        var img = 'background-image: url(../images/profilepic1.jpg);';
 
+        return img;
+    }
     $scope.addDriver = function () {
         this.newUser.role = 'Driver';
         $http.post('/user/add-driver', $scope.newUser).then(function (response) {
