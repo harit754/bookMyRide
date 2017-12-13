@@ -3,12 +3,21 @@ angular.module('bookMyRide').controller('driver-cabCtrl', function ($scope, $htt
     function init() {
         $scope.showCab = true;
         $scope.newUser = {};
-    }
-    $scope.getBackgroundImage = function () {
-        var img = 'background-image: url(../images/profilepic1.jpg);';
+        $scope.stepsModel = [];
 
-        return img;
+        $scope.imageUpload = function (element) {
+            var reader = new FileReader();
+            reader.onload = $scope.imageIsLoaded;
+            reader.readAsDataURL(element.files[0]);
+        }
+
+        $scope.imageIsLoaded = function (e) {
+            $scope.$apply(function () {
+                $scope.stepsModel[0] = e.target.result;
+            });
+        }
     }
+
     $scope.addDriver = function () {
         this.newUser.role = 'Driver';
         $http.post('/user/add-driver', $scope.newUser).then(function (response) {
@@ -16,6 +25,8 @@ angular.module('bookMyRide').controller('driver-cabCtrl', function ($scope, $htt
             init();
         });
     }
+
+
 
 
 });

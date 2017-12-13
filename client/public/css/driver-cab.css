@@ -27,6 +27,12 @@
     transition: all .3s ease;
     text-decoration: none;
 }
+.thumb{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    float:left;
+}
 
 .profile-pic {
     background-image: url(../images/profilepic1.jpg);
