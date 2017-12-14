@@ -38,12 +38,12 @@
                     return $http.post('/user/sign-up', data);
                 },
                 login: function (data) {
-                    $http.post('/user/login', data);
+                    return $http.post('/user/login', data);
                 },
-                logout: function (success) {
+                logout: function () {
                     tokenClaims = {};
                     delete $localStorage.token;
-                    success();
+                    return $http.get('/user/logout');
                 },
                 getTokenClaims: function () {
                     return tokenClaims;
