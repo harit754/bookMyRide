@@ -1,6 +1,6 @@
-var app = angular.module('bookMyRide', ['ngRoute']);
+var app = angular.module('bookMyRide', ['ngRoute', 'ngStorage']);
 app
-    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+    .config(['$routeProvider', '$locationProvider', '$httpProvider', '$localStorage', function ($routeProvider, $locationProvider, $httpProvider, $localStorage) {
         $locationProvider.hashPrefix('');
         $routeProvider
             .when('/', {
@@ -53,8 +53,8 @@ app
         }]);
 
         //  $httpProvider.interceptors.push Ends here.
-    })
-    .run(function ($rootScope, $location, $localStorage) {
+    }])
+    .run(['$rootScope', '$location', '$localStorage', function ($rootScope, $location, $localStorage) {
         $rootScope.$on("$routeChangeStart", function (event, next) {
             if ($localStorage.token == null) {
                 var allowedURL = ['/login', '/home', '/'];
@@ -65,4 +65,4 @@ app
                 }
             }
         });
-    }); 
+    }]); 
