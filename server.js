@@ -4,6 +4,8 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var userRoute = require('./server/routes/user-route');
 var tariffRoute = require('./server/routes/tariff-route');
+var verifyToken = require('./server/routes/verify-token');
+
 
 var bodyParser = require('body-parser');
 
@@ -15,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, '/client')));
 
 app.use('/user', userRoute);
-app.use('/tariff', tariffRoute);
+
+app.use('/tariff', verifyToken, tariffRoute);
 
 mongoose.connect('mongodb://127.0.0.1/Cab-db', { useMongoClient: true }, function (err) {
     if (err) {

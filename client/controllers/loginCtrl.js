@@ -1,3 +1,5 @@
+import { read } from "fs";
+
 angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $location, $window) {
     init();
     function init() {
@@ -13,4 +15,11 @@ angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $l
             init();
         });
     }
+    $scope.login = function () {
+        $http.post('/user/sign-up', $scope.loginUser).then(function (response) {
+            console.log('Login was Successfull');
+            console.log(response.data);
+        });
+    }
+
 });

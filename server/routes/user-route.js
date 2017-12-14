@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var user = require('../models/user.js');
 var bcrypt = require('bcrypt');
+var verifyToken = require('./server/routes/verify-token');
+
 
 // Sign-up Post-Method Route---------------------------------------------->
 
@@ -51,6 +53,20 @@ router.post('/login', function (req, res) {
     });
 });
 
+// Login Get-Method Route---------------------------------------------->
+
+// router.get('/me', function (req, res) {
+//     var token = req.headers['x-access-token'];
+//     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+
+//     jwt.verify(token, config.secret, function (err, decoded) {
+//         if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+
+//         res.status(200).send(decoded);
+//     });
+// });
+
+
 // Logout Get-Method Route---------------------------------------------->
 
 router.get('/logout', function (req, res) {
@@ -60,7 +76,7 @@ router.get('/logout', function (req, res) {
 
 // Add-Driver Post method Route---------------------------------------------->
 
-router.post('/add-driver', function (req, res) {
+router.post('/add-driver', verifyToken, function (req, res) {
     console.log(req.body);
     bcrypt.hash(req.body.password, 5, function (err, hashPassword) {
         if (err) {

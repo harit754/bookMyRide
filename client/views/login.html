@@ -78,13 +78,13 @@
                 <form>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email" ng-model="loginUser.email">
                             <i class="fa fa-user input-group-addon"></i>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" placeholder="Password" ng-model="loginUser.password">
                             <i class="fa fa-key input-group-addon"></i>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-success btn-lg">Log In</button>
+                        <button type="button" ng-click="login()" class="btn btn-outline-success btn-lg">Log In</button>
                     </div>
                 </form>
             </div>
