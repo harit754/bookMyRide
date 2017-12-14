@@ -34,6 +34,30 @@ router.post('/sign-up', function (req, res) {
     });
 });
 
+// Login Post-Method Route---------------------------------------------->
+
+router.post('/login', function (req, res) {
+    user.findOne({ email: req.body.email }, function (err, user) {
+        if (err) return res.status(500).send('Error on the server.');
+        if (!user) return res.status(404).send('No user found.');
+
+        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+
+        var token = jwt.sign({ email: user.email }, 'mysecret', {
+            expiresIn: 3600 // expires in 1 hour
+        });
+        res.status(200).send({ auth: true, token: token });
+    });
+});
+
+// Logout Get-Method Route---------------------------------------------->
+
+router.get('/logout', function (req, res) {
+    res.status(200).send({ auth: false, token: null });
+});
+
+
 // Add-Driver Post method Route---------------------------------------------->
 
 router.post('/add-driver', function (req, res) {

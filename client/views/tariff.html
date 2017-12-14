@@ -17,9 +17,24 @@
                 <br>
                 <!-- Add Tariff Form -->
                 <form>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Cab Type" ng-model="newTariff.cabType">
+                            <i class="fa fa-car input-group-addon"></i>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+
+                        <div class="input-group">
+
+
+                            <select class="form-control" ng-model="newTariff.cabType" ng-init="newTariff.cabType='Micro'">
+                                <option value="Micro">Micro</option>
+                                <option value="Mini">Mini</option>
+                                <option value="Prime">Prime</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                            </select>
                             <i class="fa fa-car input-group-addon"></i>
                         </div>
                     </div>
@@ -37,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Peak Rate per km/hr" ng-model="newTariff.peakRate">
+                            <input type="text" class="form-control" placeholder="Peak Rate per km/hr" ng-model="newTariff.peakRate">
                             <i class="fa fa-inr input-group-addon"></i>
                         </div>
                     </div>
