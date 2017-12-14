@@ -4,7 +4,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var userRoute = require('./server/routes/user-route');
 var tariffRoute = require('./server/routes/tariff-route');
-var verifyToken = require('./server/routes/verify-token');
+var verifyToken = require('./server/routes/verify');
 
 
 var bodyParser = require('body-parser');

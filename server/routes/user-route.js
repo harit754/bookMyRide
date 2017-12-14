@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var user = require('../models/user.js');
 var bcrypt = require('bcrypt');
-var verifyToken = require('./server/routes/verify-token');
-
-
+var verifyToken = require('./verify');
+var jwt = require('jsonwebtoken');
 // Sign-up Post-Method Route---------------------------------------------->
 
 router.post('/sign-up', function (req, res) {
@@ -49,7 +48,7 @@ router.post('/login', function (req, res) {
         var token = jwt.sign({ email: user.email }, 'mysecret', {
             expiresIn: 3600 // expires in 1 hour
         });
-        res.status(200).send({ auth: true, token: token });
+        res.status(200).send({ auth: true, token: token, user: user });
     });
 });
 
