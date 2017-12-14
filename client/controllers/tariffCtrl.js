@@ -4,7 +4,6 @@ angular.module('bookMyRide').controller('tariffCtrl', function ($scope, $http, $
         $scope.newTariff = {};
     }
 
-
     $scope.addTariff = function () {
 
         $http.post('/user/add-tariff', $scope.newTariff).then(function (response) {
