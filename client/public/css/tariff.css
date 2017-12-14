@@ -1,0 +1,21 @@
+.showcase3{
+    margin-top: 60px;
+}
+#showcase3 h1{
+     font-size: 24px;
+     color: white;
+}
+.showcase3-left h1{
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    background-color: #d50000;
+    color: white;
+}
+.showcase3-right h1{
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0,0, 0.9);
+    color: white;
+}
