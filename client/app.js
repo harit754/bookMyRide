@@ -24,7 +24,7 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/tariff', {
             templateUrl: './views/tariff.html',
-
+            controller: 'tariffCtrl'
         })
         .when('/login', {
             templateUrl: './views/login.html',
