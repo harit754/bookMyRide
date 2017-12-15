@@ -29,6 +29,9 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         .when('/login', {
             templateUrl: './views/login.html',
             controller: 'loginCtrl'
+        })
+        .when('/access-denied', {
+            templateUrl: './views/unauthorized-access.html',
         });
 
 
@@ -57,8 +60,9 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
 app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $location, $localStorage) {
     $rootScope.$on("$routeChangeStart", function (event, next) {
         if ($localStorage.token == null) {
-            var allowedURL = ['/login', '/home', '/'];
-            var publicURLfound = allowedURL.indexOf($location.path()) > -1;
+
+            var publicURL = ['/login', '/home', '/', '/access-denied'];
+            var publicURLfound = publicURL.indexOf($location.path()) > -1;
 
             if (!publicURLfound) {
                 $location.path("/login");

@@ -1,0 +1,10 @@
+.unauth{
+    margin-top: 100px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 5px;
+    text-align: center;
+}
+.unauth h1 {
+    font-size: 52px;
+    color:red;
+}
