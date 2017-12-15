@@ -9,9 +9,19 @@ angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $l
     $scope.signUp = function () {
         this.newUser.role = 'User';
 
-        Auth.signup($scope.newUser).then(function (response) {
-            console.log('Data Saved Successfully');
-            init();
+        $http.get('/user/get-user/' + this.newUser.email).then(function (response) {
+            if (response.data) {
+                $scope.alert = 'User already exist! Please enter a different email-address!';
+
+
+            }
+            else {
+                Auth.signup($scope.newUser).then(function (response) {
+                    console.log('Data Saved Successfully');
+                    init();
+                    $scope.alert = '';
+                });
+            }
         });
     }
 
@@ -22,6 +32,16 @@ angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $l
             $localStorage.user = response.data.user;
             console.log($localStorage.user);
             console.log(response);
+
+            if ($localStorage.user.role.toLowerCase() == 'user') {
+                $location.path('/booking');
+            }
+            else if ($localStorage.user.role.toLowerCase() == 'driver') {
+                $location.path('/driver');
+            }
+            else if ($localStorage.user.role.toLowerCase() == 'admin') {
+                $location.path('/tariff');
+            }
         });
     }
 

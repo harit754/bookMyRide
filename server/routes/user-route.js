@@ -4,6 +4,19 @@ var user = require('../models/user.js');
 var bcrypt = require('bcrypt');
 var verifyToken = require('./verify');
 var jwt = require('jsonwebtoken');
+
+// Sign-up GET-USER-Method Route---------------------------------------------->
+router.get('/get-user/:email', function (req, res) {
+    user.findOne({ email: req.params.email }, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            res.json(data);
+        }
+    });
+});
+
+
 // Sign-up Post-Method Route---------------------------------------------->
 
 router.post('/sign-up', function (req, res) {

@@ -13,17 +13,21 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/tariff">Tariff</a>
+                <a class="nav-link" href="#/tariff" ng-show="$localStorage.user.role.toLowerCase()=='admin'">Tariff</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/driver-cab">Driver/Cab</a>
+                <a class="nav-link" href="#/driver-cab" ng-show="$localStorage.user.role.toLowerCase()=='admin'">Driver/Cab</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-hide="$localStorage.user">
                 <a class="nav-link" href="#/login">
                     <i class="fa fa-user" aria-hidden="true"></i> &nbsp;Login</a>
+            </li>
+            <li class="nav-item" ng-show="$localStorage.user">
+                <a class="nav-link" ng-click="logout()">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout</a>
             </li>
         </ul>
     </div>

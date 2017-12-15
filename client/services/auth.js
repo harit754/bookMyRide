@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('bookMyRide')
-        .factory('Auth', ['$http', '$localStorage', function ($http, $localStorage) {
+        .factory('Auth', ['$http', '$localStorage', '$location', function ($http, $localStorage, $location) {
 
             function urlBase64Decode(str) {
                 var output = str.replace('-', '+').replace('_', '/');
@@ -45,6 +45,7 @@
                     delete $localStorage.token;
                     delete $localStorage.user;
                     return $http.get('/user/logout');
+                    $location.path('/home');
                 },
                 getTokenClaims: function () {
                     return tokenClaims;
