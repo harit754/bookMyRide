@@ -45,7 +45,6 @@
                     delete $localStorage.token;
                     delete $localStorage.user;
                     return $http.get('/user/logout');
-                    $location.path('/home');
                 },
                 getTokenClaims: function () {
                     return tokenClaims;
