@@ -19,3 +19,19 @@
     background-color: rgba(0, 0,0, 0.9);
     color: white;
 }
+
+.current-booking{
+    max-width: 500px;
+}
+.current-position{
+    max-width: 500px;
+    margin-left: 20px;
+}
+ #client-pickup {
+    color: red;
+}
+.map-2 {
+    height: 400px;
+    width: 100%;
+    border-radius: 5px;
+}

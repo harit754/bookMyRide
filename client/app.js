@@ -74,7 +74,6 @@ app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $loca
         }
 
         if ($localStorage.user != 'undefined' && $localStorage.user != null) {
-            debugger;
             if ($localStorage.user.role.toLowerCase() == 'admin') {
                 var adminURL = ['/home', '/', '/booking', '/access-denied', '/driver-cab', '/tariff'];
                 var adminURLfound = adminURL.indexOf($location.path()) > -1;
