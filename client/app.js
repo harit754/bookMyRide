@@ -61,13 +61,15 @@ app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $loca
     $rootScope.$on("$routeChangeStart", function (event, next) {
 
         if ($localStorage.token == null) {
-            var publicURL = ['/login', '/home', '/', '/access-denied'];
+            var publicURL = ['/login', '/home', '/', '', '/access-denied'];
             var publicURLfound = publicURL.indexOf($location.path()) > -1;
 
             if (!publicURLfound) {
                 $location.path("/login");
             }
-        } else {
+        }
+
+        if ($localStorage.user !== null) {
             if ($localStorage.user.role === 'admin') {
                 var adminURL = ['/home', '/', '/booking', '/access-denied', '/driver-cab', '/tariff'];
                 var adminURLfound = adminURL.indexOf($location.path()) > -1;
