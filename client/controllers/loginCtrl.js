@@ -19,6 +19,8 @@ angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $l
         Auth.login($scope.loginUser).then(function (response) {
             console.log('Login was Successfull');
             $localStorage.token = response.data.token;
+            $localStorage.user = response.data.user;
+            console.log($localStorage.user);
             console.log(response);
         });
     }

@@ -43,6 +43,7 @@
                 logout: function () {
                     tokenClaims = {};
                     delete $localStorage.token;
+                    delete $localStorage.user;
                     return $http.get('/user/logout');
                 },
                 getTokenClaims: function () {
