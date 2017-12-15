@@ -10,6 +10,7 @@
   "author": "Ayush Pratap",
   "license": "ISC",
   "dependencies": {
+    "angular-moment-picker": "^0.10.1",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
