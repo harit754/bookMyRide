@@ -69,8 +69,9 @@ app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $loca
             }
         }
 
-        if ($localStorage.user !== null) {
-            if ($localStorage.user.role === 'admin') {
+        if ($localStorage.user != 'undefined' && $localStorage.user != null) {
+            debugger;
+            if ($localStorage.user.role.toLowerCase() == 'admin') {
                 var adminURL = ['/home', '/', '/booking', '/access-denied', '/driver-cab', '/tariff'];
                 var adminURLfound = adminURL.indexOf($location.path()) > -1;
 
@@ -79,7 +80,7 @@ app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $loca
                 }
             }
 
-            if ($localStorage.user.role === 'user') {
+            else if ($localStorage.user.role.toLowerCase() == 'user') {
                 var userURL = ['/home', '/', '/booking', '/access-denied', '/user-profile', '/user-booking-history'];
                 var userURLfound = userURL.indexOf($location.path()) > -1;
 
@@ -88,13 +89,16 @@ app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $loca
                 }
             }
 
-            if ($localStorage.user.role === 'driver') {
+            else if ($localStorage.user.role.toLowerCase() == 'driver') {
                 var driverURL = ['/driver', '/access-denied', '/driver-booking-history'];
                 var driverURLfound = driverURL.indexOf($location.path()) > -1;
 
                 if (!driverURLfound) {
                     $location.path("/access-denied");
                 }
+            }
+            else {
+                $location.path("/login");
             }
         }
     });
