@@ -1,10 +1,26 @@
-angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window) {
+angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window, $localStorage) {
     /************global variables for map manipulation start ***************************/
 
-
+    var socket = io();
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
-
+    var allDriverMarkers = [];
+    socket.on('re-draw-user-map', function (allDrivers) {
+        console.log(allDrivers);
+        /*For loop
+        Draw cab Icon at Pos of every driver
+        */
+        var i;
+        for (i; i < allDrivers.length; i++) {
+            var pos = allDrivers[i].user.pos;
+            driverMarker = new google.maps.Marker({
+                position: pos,
+                map: mapObj.map,
+                icon: carIcon
+            });
+            allDriverMarkers.push(driverMarker);
+        }
+    });
 
     var mapObj = {};
 
@@ -59,6 +75,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         });
 
         google.maps.event.addListener(marker, 'drag', function () {
+            debugger;
             updateMarkerStatus('Dragging...');
             updateMarkerPosition(marker.getPosition());
         });
@@ -70,6 +87,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         });
 
         google.maps.event.addListener(mapObj.map, 'click', function (e) {
+            debugger;
             updateMarkerPosition(e.latLng);
             geocodePosition(marker.getPosition(), input);
             marker.setPosition(e.latLng);
@@ -202,6 +220,9 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+                $localStorage.user.pos = pos;
+                socket.emit('user-in', $localStorage.user);
+
                 var infowindow = mapObj.pickInfoWindow;
 
                 mapObj.geocoder.geocode({ 'location': pos }, function (results, status) {
@@ -237,8 +258,10 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
         // infoWindow.setPosition(pos);
         mapObj.map.setCenter(pos);
-
+        debugger;
+        // marker.setPosition(pos);
         updateMarkerPosition(marker.getPosition());
+        // updateMarkerPosition(pos);
         geocodePosition(pos, input);
 
 
@@ -296,6 +319,13 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     function updateMarkerPosition(latLng) {
+        var pos = {
+            lat: latLng.lat(),
+            lng: latLng.lng()
+        };
+        $localStorage.user.pos = pos;
+        socket.emit('user-position-change', $localStorage.user);
+
         document.getElementById('info').innerHTML = [
             latLng.lat(),
             latLng.lng()

@@ -1,5 +1,16 @@
-angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $location, $window) {
+angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $location, $window, $localStorage) {
 
+    // <------------------------------------------Socket.io code----------------------------------------->
+
+    var socket = io();
+
+    socket.on('re-draw-driver-map', function (allUsers) {
+        /*For loop
+        Draw Man Icon at Pos of every user
+        */
+    });
+
+    // <---------------------------------------Google Map Code--------------------------->
     var mapObj = {};
     mapObj.geocoder = new google.maps.Geocoder();
     var infoWindow = new google.maps.InfoWindow;
@@ -46,6 +57,11 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
                 mapObj.map.setCenter(pos);
                 mapObj.map.setZoom(17);
                 mapObj.carMarker.setPosition(pos);
+
+                //broadcast Driver + Position to server
+                $localStorage.user.pos = pos;
+                socket.emit('driver-in', $localStorage.user);
+
             }, function () {
                 handleLocationError(true, infoWindow, mapObj.map.getCenter());
             });
@@ -62,6 +78,9 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
             'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(mapObj.map);
     }
+
+
+
 
 });
 

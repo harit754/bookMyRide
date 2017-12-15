@@ -31,6 +31,54 @@ mongoose.connect('mongodb://127.0.0.1/Cab-db', { useMongoClient: true }, functio
     }
 });
 
-app.listen(3000, () => {
+
+var server = require('http').createServer(app);
+server.listen(3000, () => {
     console.log('Server started on Port 3000 "http://localhost:3000');
 })
+
+var io = require('socket.io')(server);
+var allDrivers = [];
+var allUsers = [];
+
+
+io.sockets.on('connection', function (socket) {
+    socket.on('user-in', function (user) {
+        console.log(user);
+        allUsers.push({ id: socket.id, user: user });
+        io.emit('re-draw-driver-map', allUsers);
+    });
+    socket.on('user-position-change', function (user) {
+        console.log(user);
+        var i;
+        for (i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].id == socket.id) {
+                allUsers[i].user = user;
+                io.emit('re-draw-driver-map', allUsers);
+            }
+        }
+
+
+        io.emit('re-draw-driver-map', allUsers);
+    });
+    socket.on('driver-in', function (driver) {
+        console.log(driver);
+        allDrivers.push({ id: socket.id, driver: driver });
+        io.emit('re-draw-user-map', allDrivers);
+    });
+    socket.on('disconnect', function () {
+        var i;
+        for (i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].id == socket.id) {
+                allUsers.splice(i, 1);
+                io.emit('re-draw-driver-map', allUsers);
+            }
+        }
+        for (i = 0; i < allDrivers.length; i++) {
+            if (allDrivers[i].id == socket.id) {
+                allDrivers[i].splice(i, 1);
+                io.emit('re-draw-user-map', allDrivers);
+            }
+        }
+    });
+});
