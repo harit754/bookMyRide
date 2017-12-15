@@ -94,7 +94,7 @@ app.run(['$rootScope', '$location', '$localStorage', function ($rootScope, $loca
             }
 
             else if ($localStorage.user.role.toLowerCase() == 'driver') {
-                var driverURL = ['/driver', '/access-denied', '/driver-booking-history'];
+                var driverURL = ['/driver', '/access-denied', '/driver-booking-history', '/', ''];
                 var driverURLfound = driverURL.indexOf($location.path()) > -1;
 
                 if (!driverURLfound) {

@@ -1,0 +1,21 @@
+.showcase4{
+    margin-top: 40px;
+}
+#showcase4 h1{
+     font-size: 24px;
+     color: white;
+}
+.showcase4-left h1{
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    background-color: #880e4f;
+    color: white;
+}
+.showcase4-right h1{
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0,0, 0.9);
+    color: white;
+}
