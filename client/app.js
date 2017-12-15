@@ -18,6 +18,10 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
             templateUrl: './views/about.html',
 
         })
+        .when('/driver', {
+            templateUrl: './views/driver.html',
+            controller: 'driverCtrl'
+        })
         .when('/driver-cab', {
             templateUrl: './views/driver-cab.html',
             controller: 'driver-cabCtrl'
