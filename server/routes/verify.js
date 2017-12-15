@@ -1,5 +1,10 @@
 var jwt = require('jsonwebtoken');
 var verifyToken = function (req, res, next) {
+    console.log(req.body.token);
+    console.log(req.query.token);
+    console.log(req.headers['x-access-token']);
+
+
     // var token = req.headers['x-access-token'];
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 

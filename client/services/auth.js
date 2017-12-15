@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('bookMyRide')
-        .factory('Auth', ['$http', '$localStorage', 'urls', function ($http, $localStorage, urls) {
+        .factory('Auth', ['$http', '$localStorage', function ($http, $localStorage) {
 
             function urlBase64Decode(str) {
                 var output = str.replace('-', '+').replace('_', '/');

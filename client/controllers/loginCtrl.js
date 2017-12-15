@@ -1,4 +1,4 @@
-angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $location, $window, Auth) {
+angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $location, $window, Auth, $localStorage) {
     init();
     function init() {
         $scope.showLogin = true;
