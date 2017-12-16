@@ -48,6 +48,16 @@ io.sockets.on('connection', function (socket) {
         allUsers.push({ id: socket.id, user: user });
         io.emit('re-draw-driver-map', allUsers);
     });
+    socket.on('user-out', function (userEmail) {
+        console.log('user email id ' + userEmail);
+        var i;
+        for (i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].email == userEmail) {
+                allUsers.splice(i, 1);
+                io.emit('re-draw-driver-map', allUsers);
+            }
+        }
+    });
     socket.on('user-position-change', function (user) {
         console.log(user);
         var i;
@@ -57,14 +67,22 @@ io.sockets.on('connection', function (socket) {
                 io.emit('re-draw-driver-map', allUsers);
             }
         }
-
-
         io.emit('re-draw-driver-map', allUsers);
     });
     socket.on('driver-in', function (driver) {
         console.log(driver);
         allDrivers.push({ id: socket.id, driver: driver });
         io.emit('re-draw-user-map', allDrivers);
+    });
+    socket.on('driver-out', function (driverEmail) {
+        console.log('driver email id ' + driverEmail);
+        var i;
+        for (i = 0; i < allDrivers.length; i++) {
+            if (allDrivers[i].email == userEmail) {
+                allDrivers.splice(i, 1);
+                io.emit('re-draw-user-map', allDrivers);
+            }
+        }
     });
     socket.on('disconnect', function () {
         var i;

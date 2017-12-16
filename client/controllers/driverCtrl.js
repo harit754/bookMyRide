@@ -3,13 +3,37 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
     // <------------------------------------------Socket.io code----------------------------------------->
 
     var socket = io();
+    initSocket(mapObj.map);
+    function eraseMarkers() {
+        while (allUserMarkers.length) {
+            allUserMarkers.pop().setMap(null);
+        }
+    }
 
-    socket.on('re-draw-driver-map', function (allUsers) {
-        /*For loop
-        Draw Man Icon at Pos of every user
-        */
-    });
+    function initSocket(map) {
+        socket.on('re-draw-driver-map', function (allUsers) {
+            /*For loop
+            Draw Man Icon at Pos of every user
+            */
+            eraseMarkers();
+            var i;
+            for (i = 0; i < allUsers.length; i++) {
+                // var obj = allDrivers[i];
+                // console.log(obj);
 
+                var pos = allUsers[i].user.pos;
+                userMarker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: manIcon
+                });
+
+
+                // map.setCenter(pos);
+                allUserMarkers.push(userMarker);
+            }
+        });
+    }
     // <---------------------------------------Google Map Code--------------------------->
     var mapObj = {};
     mapObj.geocoder = new google.maps.Geocoder();
@@ -27,12 +51,12 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
         anchor: new google.maps.Point(35, 60) // anchor
     };
 
-
     mapObj.initPos = { lat: 20.5937, lng: 78.9629 };
     mapObj.map = new google.maps.Map(document.getElementById('driver-map'), {
         zoom: 16,
         center: mapObj.initPos
     });
+
 
     mapObj.carMarker = new google.maps.Marker({
         position: mapObj.initPos,
