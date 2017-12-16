@@ -5,24 +5,47 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var allDriverMarkers = [];
-    socket.on('re-draw-user-map', function (allDrivers) {
-        console.log(allDrivers);
-        /*For loop
-        Draw cab Icon at Pos of every driver
-        */
-        var i;
-        for (i; i < allDrivers.length; i++) {
-            var pos = allDrivers[i].user.pos;
-            driverMarker = new google.maps.Marker({
-                position: pos,
-                map: mapObj.map,
-                icon: carIcon
-            });
-            allDriverMarkers.push(driverMarker);
-        }
-    });
 
     var mapObj = {};
+    mapObj.initPos = { lat: 20.5937, lng: 78.9629 };
+    mapObj.map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: mapObj.initPos
+    });
+
+    initSocket(mapObj.map);
+    function eraseMarkers() {
+        while (allDriverMarkers.length) {
+            allDriverMarkers.pop().setMap(null);
+        }
+    }
+    function initSocket(map) {
+
+        socket.on('re-draw-user-map', function (allDrivers) {
+            // console.log(allDrivers);
+            /*For loop
+            Draw cab Icon at Pos of every driver
+            */
+            eraseMarkers();
+            var i;
+            for (i = 0; i < allDrivers.length; i++) {
+                // var obj = allDrivers[i];
+                // console.log(obj);
+
+                var pos = allDrivers[i].driver.pos;
+                driverMarker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: carIcon
+                });
+
+
+                // map.setCenter(pos);
+                allDriverMarkers.push(driverMarker);
+            }
+        });
+
+    }
 
     var carIcon = {
         url: "./public/images/car.png", // url
@@ -38,11 +61,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     };
 
 
-    mapObj.initPos = { lat: 20.5937, lng: 78.9629 };
-    mapObj.map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: mapObj.initPos
-    });
+
     mapObj.geocoder = new google.maps.Geocoder();
 
     mapObj.inputPick = document.getElementById('pickLocation');
@@ -69,13 +88,16 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     mapObj.pickInfoWindow = new google.maps.InfoWindow();
     mapObj.dropInfoWindow = new google.maps.InfoWindow();
 
+
+
+
     function initMarkerEvents(marker, input) {
         google.maps.event.addListener(marker, 'dragstart', function () {
             updateMarkerAddress('Dragging...');
         });
 
         google.maps.event.addListener(marker, 'drag', function () {
-            debugger;
+            // debugger;
             updateMarkerStatus('Dragging...');
             updateMarkerPosition(marker.getPosition());
         });
@@ -87,7 +109,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         });
 
         google.maps.event.addListener(mapObj.map, 'click', function (e) {
-            debugger;
+            // debugger;
             updateMarkerPosition(e.latLng);
             geocodePosition(marker.getPosition(), input);
             marker.setPosition(e.latLng);
@@ -258,7 +280,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
         // infoWindow.setPosition(pos);
         mapObj.map.setCenter(pos);
-        debugger;
+        // debugger;
         // marker.setPosition(pos);
         updateMarkerPosition(marker.getPosition());
         // updateMarkerPosition(pos);

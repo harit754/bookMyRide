@@ -76,7 +76,7 @@ io.sockets.on('connection', function (socket) {
         }
         for (i = 0; i < allDrivers.length; i++) {
             if (allDrivers[i].id == socket.id) {
-                allDrivers[i].splice(i, 1);
+                allDrivers.splice(i, 1);
                 io.emit('re-draw-user-map', allDrivers);
             }
         }
