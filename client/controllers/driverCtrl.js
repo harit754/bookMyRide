@@ -3,7 +3,7 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
     // <------------------------------------------Socket.io code----------------------------------------->
 
     var socket = io();
-    initSocket(mapObj.map);
+
     function eraseMarkers() {
         while (allUserMarkers.length) {
             allUserMarkers.pop().setMap(null);
@@ -57,6 +57,7 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
         center: mapObj.initPos
     });
 
+    initSocket(mapObj.map);
 
     mapObj.carMarker = new google.maps.Marker({
         position: mapObj.initPos,
