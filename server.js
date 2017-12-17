@@ -47,12 +47,13 @@ io.sockets.on('connection', function (socket) {
         console.log(user);
         allUsers.push({ id: socket.id, user: user });
         io.emit('re-draw-driver-map', allUsers);
+        io.emit('re-draw-user-map', allDrivers);
     });
     socket.on('user-out', function (userEmail) {
         console.log('user email id ' + userEmail);
         var i;
         for (i = 0; i < allUsers.length; i++) {
-            if (allUsers[i].email == userEmail) {
+            if (allUsers[i].user.email == userEmail) {
                 allUsers.splice(i, 1);
                 io.emit('re-draw-driver-map', allUsers);
             }
@@ -73,12 +74,13 @@ io.sockets.on('connection', function (socket) {
         console.log(driver);
         allDrivers.push({ id: socket.id, driver: driver });
         io.emit('re-draw-user-map', allDrivers);
+        io.emit('re-draw-driver-map', allUsers);
     });
     socket.on('driver-out', function (driverEmail) {
         console.log('driver email id ' + driverEmail);
         var i;
         for (i = 0; i < allDrivers.length; i++) {
-            if (allDrivers[i].email == userEmail) {
+            if (allDrivers[i].user.email == userEmail) {
                 allDrivers.splice(i, 1);
                 io.emit('re-draw-user-map', allDrivers);
             }
