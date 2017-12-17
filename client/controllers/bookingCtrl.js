@@ -108,13 +108,13 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             mapObj.map.panTo(marker.getPosition());
         });
 
-        google.maps.event.addListener(mapObj.map, 'click', function (e) {
-            // debugger;
-            updateMarkerPosition(e.latLng);
-            geocodePosition(marker.getPosition(), input);
-            marker.setPosition(e.latLng);
-            mapObj.map.panTo(marker.getPosition());
-        });
+        // google.maps.event.addListener(mapObj.map, 'click', function (e) {
+        //     // debugger;
+        //     updateMarkerPosition(e.latLng);
+        //     geocodePosition(marker.getPosition(), input);
+        //     marker.setPosition(e.latLng);
+        //     mapObj.map.panTo(marker.getPosition());
+        // });
 
     }
     /************global variables for map manipulation END ***************************/
@@ -146,7 +146,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         //Auto complete for Pick
         google.maps.event.addListener(mapObj.autocompletePick, 'place_changed', function () {
             mapObj.pickInfoWindow.close();
-            mapObj.pickMarker.setVisible(false);
+            // mapObj.pickMarker.setVisible(false);
             var place = mapObj.autocompletePick.getPlace();
 
             if (!place.geometry) {
@@ -166,7 +166,15 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             }
 
             mapObj.pickMarker.setPosition(place.geometry.location);
-            mapObj.pickMarker.setVisible(true);
+
+            var pos = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            };
+            $localStorage.user.pos = pos;
+            socket.emit('user-position-change', $localStorage.user);
+
+            // mapObj.pickMarker.setVisible(true);
 
             var address = '';
             if (place.address_components) {
