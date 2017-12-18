@@ -19,7 +19,6 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
         for (i = 0; i < allUsers.length; i++) {
             // var obj = allDrivers[i];
             // console.log(obj);
-
             var pos = allUsers[i].user.pos;
             userMarker = new google.maps.Marker({
                 position: pos,
