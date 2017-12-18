@@ -11,6 +11,7 @@
     border-radius: 5px;
     background-color: #880e4f;
     color: white;
+    font-size: 24px;
 }
 .showcase4-right h1{
     text-align: center;
@@ -18,6 +19,7 @@
     border-radius: 5px;
     background-color: rgba(0, 0,0, 0.9);
     color: white;
+    font-size: 24px;
 }
 
 .current-booking{
@@ -27,9 +29,12 @@
     max-width: 500px;
     margin-left: 20px;
 }
- #client-pickup {
+ #client-pickup,#client-name,#client-number {
     color: red;
+    font-size: 24px;
 }
+
+
 .map-2 {
     height: 400px;
     width: 100%;
