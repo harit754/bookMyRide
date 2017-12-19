@@ -1,4 +1,4 @@
-var app = angular.module('bookMyRide', ['ngRoute', 'ngStorage', 'ui.router']);
+var app = angular.module('bookMyRide', ['ngRoute', 'ngStorage', 'ui.router', 'moment-picker']);
 app.config(function ($routeProvider, $locationProvider, $httpProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider

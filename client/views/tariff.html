@@ -8,6 +8,32 @@
             <div class="showcase3-left">
                 <h1 class="box-effect slide-left">Tariff Plans</h1>
                 <br>
+                <table class="table table-condensed table-responsive slide-left">
+                    <Tr>
+                        <th>Cab Type</th>
+                        <th>Base Fare</th>
+                        <th>Normal Rate Per Km/hr</th>
+                        <th>Peak Rate per km/hr</th>
+                        <th>Start Peak Time</th>
+                        <th>End Peak Time</th>
+
+                    </Tr>
+                    <tr ng-repeat="t in allTariffs">
+                        <td>{{t.name}}</td>
+                        <td>{{t.location}}</td>
+                        <td>{{t.city}}</td>
+                        <td>
+                            <button class="btn btn-info" ng-click="theaterCtrl.editTheater(t)" data-toggle="modal" data-target="#exampleModal">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="theaterCtrl.deleteTheater(t)">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="col-md-6 col-sm-6">
@@ -15,7 +41,7 @@
                 <h1 class="box-effect">Add Tariff</h1>
                 <br>
                 <!-- Add Tariff Form -->
-                <form>
+                <form class="tariff-form">
                     <!-- <div class="form-group">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Cab Type" ng-model="newTariff.cabType">
@@ -57,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group" moment-picker="newTariff.startPeakTime" format="HH:mm">
-                            <input type="text" class="form-control" placeholder="start Peak Time" ng-model="newTariff.startPeakTime">
+                            <input type="text" class="form-control" placeholder="Start Peak Time" ng-model="newTariff.startPeakTime">
                             <i class="fa fa-clock-o input-group-addon"></i>
                         </div>
                     </div>
