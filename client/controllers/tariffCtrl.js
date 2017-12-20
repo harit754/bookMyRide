@@ -1,8 +1,8 @@
 angular.module('bookMyRide').controller('tariffCtrl', function ($scope, $http, $location, $window) {
     init();
+    getTariff();
     function init() {
         $scope.newTariff = {};
-        getTariff();
     }
 
     $scope.addTariff = function () {
@@ -13,11 +13,12 @@ angular.module('bookMyRide').controller('tariffCtrl', function ($scope, $http, $
         });
     }
 
-    var getTariff = function () {
-        $http.get('/GetTariffs').then(function (response) {
+    function getTariff() {
+        $http.get('/tariff').then(function (response) {
             $scope.allTariffs = response.data;
+            console.log(response.data);
         });
-        console.log(response.data);
+
     }
 
 

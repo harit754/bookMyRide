@@ -18,16 +18,19 @@
                         <th>End Peak Time</th>
                     </Tr>
                     <tr ng-repeat="t in allTariffs">
-                        <td>{{t.name}}</td>
-                        <td>{{t.location}}</td>
-                        <td>{{t.city}}</td>
+                        <td>{{t.cabType}}</td>
+                        <td>{{t.baseFare}}</td>
+                        <td>{{t.normalRate}}</td>
+                        <td>{{t.peakRate}}</td>
+                        <td>{{t.startPeakTime}}</td>
+                        <td>{{t.endPeakTime}}</td>
                         <td>
-                            <button class="btn btn-info" ng-click="theaterCtrl.editTheater(t)" data-toggle="modal" data-target="#exampleModal">
+                            <button class="btn btn-info" ng-click="editTariff(t)" data-toggle="modal" data-target="#exampleModal">
                                 <span class="fa fa-pencil-square-o"></span>
                             </button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" ng-click="theaterCtrl.deleteTheater(t)">
+                            <button class="btn btn-danger" ng-click="deleteTariff(t)">
                                 <span class="fa fa-trash"></span>
                             </button>
                         </td>
