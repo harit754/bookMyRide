@@ -2,6 +2,7 @@ angular.module('bookMyRide').controller('tariffCtrl', function ($scope, $http, $
     init();
     function init() {
         $scope.newTariff = {};
+        getTariff();
     }
 
     $scope.addTariff = function () {
@@ -10,6 +11,13 @@ angular.module('bookMyRide').controller('tariffCtrl', function ($scope, $http, $
             console.log('Data Saved Successfully');
             init();
         });
+    }
+
+    var getTariff = function () {
+        $http.get('/GetTariffs').then(function (response) {
+            $scope.allTariffs = response.data;
+        });
+        console.log(response.data);
     }
 
 

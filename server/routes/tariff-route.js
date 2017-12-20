@@ -26,4 +26,14 @@ router.post('/', function (req, res) {
     });
 });
 
+router.get('/GetTariffs', function (req, res) {
+    tariff.find({}, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            res.json(data);
+        }
+    });
+});
+
 module.exports = router;    
