@@ -127,7 +127,7 @@
                             <th>Picture</th>
                             <th>Name</th>
                             <th>Number</th>
-                            <th>Email ID</th>
+                            <!-- <th>Email ID</th> -->
                             <th>License Number</th>
                             <th>License Expiry</th>
                             <th>Experience</th>
@@ -137,9 +137,10 @@
                             <th>Color</th>
                         </Tr>
                         <tr ng-repeat="d in allDrivers">
+                            <td>Image</td>
                             <td>{{d.firstName+" "+d.lastName}}</td>
                             <td>{{d.phoneNumber}}</td>
-                            <td>{{d.email}}</td>
+                            <!-- <td>{{d.email}}</td> -->
                             <td>{{d.licenseNo}}</td>
                             <td>{{d.licenseExp}}</td>
                             <td>{{d.experience}}</td>
