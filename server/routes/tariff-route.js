@@ -49,4 +49,23 @@ router.delete('/:id', function (req, res) {
     });
 });
 
+router.put('/:id', function (req, res) {
+    tariff.findOneAndUpdate({ _id: req.params.id }, {
+        cabType: req.body.cabType,
+        normalRate: req.body.normalRate,
+        peakRate: req.body.peakRate,
+        startPeakTime: req.body.startPeakTime,
+        endPeakTime: req.body.endPeakTime,
+        baseFare: req.body.baseFare
+    }, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('Tariff Updated Successfully');
+            res.end();
+        }
+    }
+    );
+});
+
 module.exports = router;    

@@ -107,11 +107,76 @@
 </div>
 
 
-
-
 <div class="footanim2">
     <my-footer class="footer"></my-footer>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Employee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="input-group">
+
+
+                        <select class="form-control" ng-model="editTariff.cabType" ng-init="editTariff.cabType='Micro'">
+                            <option value="Micro">Micro</option>
+                            <option value="Mini">Mini</option>
+                            <option value="Prime">Prime</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                        </select>
+                        <i class="fa fa-car input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Base Fare" ng-model="editTariff.baseFare">
+                        <i class="fa fa-money input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Normal Rate Per Km/hr" ng-model="editTariff.normalRate">
+                        <i class="fa fa-inr input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Peak Rate per km/hr" ng-model="editTariff.peakRate">
+                        <i class="fa fa-inr input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group" moment-picker="newTariff.startPeakTime" format="HH:mm">
+                        <input type="text" class="form-control" placeholder="Start Peak Time" ng-model="editTariff.startPeakTime">
+                        <i class="fa fa-clock-o input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group" moment-picker="newTariff.endPeakTime" format="HH:mm">
+                        <input type="text" class="form-control" placeholder="End Peak Time" ng-model="editTariff.endPeakTime">
+                        <i class="fa fa-clock-o input-group-addon" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="updateTariff()" class="btn btn-outline-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal ends here -->
 
 <script>
     window.sr = ScrollReveal();
