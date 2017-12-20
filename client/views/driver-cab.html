@@ -112,8 +112,75 @@
         </div>
     </div>
 </div>
+<hr>
+<section>
+    <div class="container">
+        <div class="box-effect container-box-2">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 showcase-driver">
+                    <h1 class="box-effect slide-right">Drivers</h1>
+                    <br>
+                    <table class="table table-condensed table-responsive slide-left table-driver table-striped table-dark">
 
+                        <Tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Number</th>
+                            <th>Email ID</th>
+                            <th>License Number</th>
+                            <th>License Expiry</th>
+                            <th>Experience</th>
+                            <th>Cab Number</th>
+                            <th>Cab Type</th>
+                            <th>Model</th>
+                            <th>Color</th>
+                        </Tr>
+                        <tr ng-repeat="d in allDrivers">
+                            <td>{{d.firstName+" "+d.lastName}}</td>
+                            <td>{{d.phoneNumber}}</td>
+                            <td>{{d.email}}</td>
+                            <td>{{d.licenseNo}}</td>
+                            <td>{{d.licenseExp}}</td>
+                            <td>{{d.experience}}</td>
+                            <td>
+                                <button class="btn btn-outline-warning" ng-click="editDriver(d)" data-toggle="modal" data-target="#exampleModal">
+                                    <span class="fa fa-pencil-square-o"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger" ng-click="deleteDriver(d)">
+                                    <span class="fa fa-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Employee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="updateTariff()" class="btn btn-outline-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal ends here -->
 
 
 
