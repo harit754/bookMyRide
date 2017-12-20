@@ -36,4 +36,17 @@ router.get('/', function (req, res) {
     });
 });
 
+router.delete('/:id', function (req, res) {
+    tariff.remove({
+        _id: req.params.id
+    }, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('Tariff Removed Successfully');
+            res.end();
+        }
+    });
+});
+
 module.exports = router;    

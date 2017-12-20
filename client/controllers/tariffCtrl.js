@@ -21,5 +21,13 @@ angular.module('bookMyRide').controller('tariffCtrl', function ($scope, $http, $
 
     }
 
+    $scope.deleteTariff = function (tariff) {
+        $http.delete('/tariff' + tariff._id).then(function (response) {
+            console.log('Data Removed Successfully');
+            alert('Entry Deleted Successfully!');
+        });
+
+    }
+
 
 });
