@@ -122,5 +122,52 @@ router.post('/add-driver', verifyToken, function (req, res) {
 
 });
 
+router.get('/driver', function (req, res) {
+    user.find({}, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            res.json(data);
+        }
+    });
+});
+
+router.delete('/driver/:id', function (req, res) {
+    user.remove({
+        _id: req.params.id
+    }, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('Driver Removed Successfully');
+            res.end();
+        }
+    });
+});
+
+router.put('/driver/:id', function (req, res) {
+    user.findOneAndUpdate({ _id: req.params.id }, {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        password: hashPassword,
+        licenseNo: req.body.licenseNo,
+        licenseExp: req.body.licenseExp,
+        experience: req.body.experience,
+        cabNo: req.body.cabNo,
+        cabType: req.body.cabType,
+        model: req.body.model,
+        color: req.body.color
+    }, function (err, data) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('Driver Updated Successfully');
+            res.end();
+        }
+    }
+    );
+});
 
 module.exports = router;    

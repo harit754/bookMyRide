@@ -117,10 +117,11 @@
     <div class="container">
         <div class="box-effect container-box-2">
             <div class="row">
-                <div class="col-md-12 col-sm-12 showcase-driver">
+                <div class="col-md-1 col-sm-1"></div>
+                <div class="col-md-10 col-sm-10 showcase-driver">
                     <h1 class="box-effect slide-right">Drivers</h1>
                     <br>
-                    <table class="table table-condensed table-responsive slide-left table-driver table-striped table-dark">
+                    <table class="table table-condensed table-responsive slide-left table-driver">
 
                         <Tr>
                             <th>Picture</th>
@@ -155,6 +156,7 @@
                         </tr>
                     </table>
                 </div>
+                <div class="col-md-1 col-sm-1"></div>
             </div>
         </div>
     </div>
@@ -171,11 +173,86 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="First name" ng-model="editDriver.firstName">
+                        <i class="fa fa-user input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Last name" ng-model="editDriver.lastName">
+                        <i class="fa fa-user input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Phone Number" ng-model="editDriver.phoneNumber">
+                        <i class="fa fa-phone input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email Address" ng-model="editDriver.email">
+                        <i class="fa fa-envelope input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Password" ng-model="editDriver.password">
+                        <i class="fa fa-key input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="License No" ng-model="editDriver.licenseNo">
+                        <i class="fa fa-book input-group-addon" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="License Expiry Date" ng-model="editDriver.licenseExp">
+                        <i class="fa fa-book input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Years Of Experience" ng-model="editDriver.experience">
+                        <i class="fa fa-bolt input-group-addon"></i>
+                    </div>
+                </div>
+                <hr>
+                <br>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cab Number" ng-model="editDriver.cabNo">
+                        <i class="fa fa-list-ol input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cab Type" ng-model="editDriver.cabType">
+                        <i class="fa fa-taxi input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="model" ng-model="editDriver.model">
+                        <i class="fa fa-barcode input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Color" ng-model="editDriver.color">
+                        <i class="fa fa-paint-brush input-group-addon"></i>
+                    </div>
+                </div>
+
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                <button type="button" ng-click="updateTariff()" class="btn btn-outline-primary" data-dismiss="modal">Save changes</button>
+                <button type="button" ng-click="updateDriver()" class="btn btn-outline-primary" data-dismiss="modal">Save changes</button>
             </div>
         </div>
     </div>

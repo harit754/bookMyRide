@@ -26,6 +26,32 @@ angular.module('bookMyRide').controller('driver-cabCtrl', function ($scope, $htt
         });
     }
 
+    function getDriver() {
+        $http.get('/user/driver').then(function (response) {
+            $scope.allDrivers = response.data;
+            console.log(response.data);
+        });
+
+    }
+
+    $scope.deleteDriver = function (driver) {
+        $http.delete('/user/driver/' + driver._id).then(function (response) {
+            console.log('Data Removed Successfully');
+            alert('Driver Deleted Successfully!');
+        });
+    }
+
+    $scope.editDriver = function (driver) {
+        $scope.editDriver = angular.copy(driver);
+    }
+
+    $scope.updateDriver = function () {
+        $http.put('/user/driver/' + $scope.editDriver._id, $scope.editDriver).then(function (response) {
+            console.log('Data Updated');
+            alert('Data Updated');
+        });
+    }
+
 
 
 
