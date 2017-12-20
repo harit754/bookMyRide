@@ -1,5 +1,6 @@
 angular.module('bookMyRide').controller('driver-cabCtrl', function ($scope, $http, $location, $window) {
     init();
+    getDriver();
     function init() {
         $scope.showCab = true;
         $scope.newUser = {};
