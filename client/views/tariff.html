@@ -9,11 +9,12 @@
                 <h1 class="box-effect slide-left">Tariff Plans</h1>
                 <br>
                 <table class="table table-condensed table-responsive slide-left">
+
                     <Tr>
                         <th>Cab Type</th>
-                        <th>Base Fare</th>
-                        <th>Normal Rate</th>
-                        <th>Peak Rate</th>
+                        <th>Base Fare INR</th>
+                        <th>Normal Rate INR</th>
+                        <th>Peak Rate INR</th>
                         <th>Start Peak Time</th>
                         <th>End Peak Time</th>
                     </Tr>
@@ -25,7 +26,7 @@
                         <td>{{t.startPeakTime}}</td>
                         <td>{{t.endPeakTime}}</td>
                         <td>
-                            <button class="btn btn-outline-info" ng-click="editTariff(t)" data-toggle="modal" data-target="#exampleModal">
+                            <button class="btn btn-outline-warning" ng-click="editTariff(t)" data-toggle="modal" data-target="#exampleModal">
                                 <span class="fa fa-pencil-square-o"></span>
                             </button>
                         </td>
@@ -123,46 +124,43 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-
-                    <div class="input-group">
-
-
-                        <select class="form-control" ng-model="editTariff.cabType" ng-init="editTariff.cabType='Micro'">
-                            <option value="Micro">Micro</option>
-                            <option value="Mini">Mini</option>
-                            <option value="Prime">Prime</option>
-                            <option value="Sedan">Sedan</option>
-                            <option value="SUV">SUV</option>
-                        </select>
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Cab Type</span>
+                        <input type="text" disabled class="form-control" ng-model="editTariff.cabType">
                         <i class="fa fa-car input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Base Fare ₹</span>
                         <input type="text" class="form-control" placeholder="Base Fare" ng-model="editTariff.baseFare">
                         <i class="fa fa-money input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Normal Rate</span>
                         <input type="text" class="form-control" placeholder="Normal Rate Per Km/hr" ng-model="editTariff.normalRate">
                         <i class="fa fa-inr input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Peak Rate ₹</span>
                         <input type="text" class="form-control" placeholder="Peak Rate per km/hr" ng-model="editTariff.peakRate">
                         <i class="fa fa-inr input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group" moment-picker="newTariff.startPeakTime" format="HH:mm">
+                    <div class="input-group modal-input" moment-picker="newTariff.startPeakTime" format="HH:mm">
+                        <span class="input-group-addon" id="basic-addon1">Start Peak Time</span>
                         <input type="text" class="form-control" placeholder="Start Peak Time" ng-model="editTariff.startPeakTime">
                         <i class="fa fa-clock-o input-group-addon"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="input-group" moment-picker="newTariff.endPeakTime" format="HH:mm">
+                    <div class="input-group modal-input" moment-picker="newTariff.endPeakTime" format="HH:mm">
+                        <span class="input-group-addon" id="basic-addon1">End Peak Time</span>
                         <input type="text" class="form-control" placeholder="End Peak Time" ng-model="editTariff.endPeakTime">
                         <i class="fa fa-clock-o input-group-addon" aria-hidden="true"></i>
                     </div>
