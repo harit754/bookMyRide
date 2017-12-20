@@ -1,12 +1,12 @@
 
 .box-container{background-color:black;
-               background: url(../images/taxi1.jpg);
+               background: url(../images/taxi2.jpg);
                background-repeat: no-repeat;
                background-size: cover;
                border-radius: 5px;
                }
 
-.driver-box{background-color: rgba(255, 255, 255, 0.4);
+.driver-box{background-color: rgba(0, 0, 0, 0.8);
             border-radius: 5px;
             margin-top: 30px;
             margin-bottom: 30px;
@@ -64,7 +64,7 @@ cursor: pointer;}
     margin-top:30px; 
     height: 715px;
     border-radius:5px;
-    background-color: rgba(62, 69, 81, 0.9);
+    background-color: rgba(	28, 42, 72, 0.9);
 }
 #cab-heading{
     color: white;
