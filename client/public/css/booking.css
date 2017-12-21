@@ -39,3 +39,152 @@ body{
 .box-effect
 {box-shadow: 0 6px 16px 0 #708090;
 }
+
+/* CSS for Micro  */
+.micro {
+    margin-left: 20px;
+    background-image: url(../images/profilepic1.jpg);
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.micro span {
+    display: inline-block;
+    margin-top: 25px;
+   }
+   .micro:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CSS for Mini */
+.mini {
+    margin-left: 20px;
+    background-image: url(../images/profilepic1.jpg);
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.mini span {
+    margin-top: 25px;
+    display: inline-block;
+   }
+   .mini:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CSS for Prime */
+.prime {
+    margin-left: 20px;
+    background-image: url(../images/profilepic1.jpg);
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.prime span {
+    margin-top: 25px;
+    display: inline-block;
+   }
+   .prime:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CSS for Sedan */
+.sedan {
+    margin-left: 20px;
+    background-image: url(../images/audi.png);
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.sedan span {
+    margin-top: 25px;
+    display: inline-block;
+   }
+   .sedan:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CSS for SUV */
+.suv {
+    margin-left: 20px;
+    background-image: url(../images/jeep.png);
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.suv span {
+    display: inline-block;
+    margin-top: 25px;
+   }
+   .suv:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.book-later{margin-left: 10px;}
+
+
