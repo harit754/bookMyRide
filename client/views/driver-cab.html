@@ -124,7 +124,7 @@
                     <table class="table table-condensed table-responsive slide-left table-driver">
 
                         <Tr>
-                            <th>Picture</th>
+                            <!-- <th>Picture</th> -->
                             <th>Name</th>
                             <th>Number</th>
                             <!-- <th>Email ID</th> -->
@@ -136,14 +136,18 @@
                             <th>Model</th>
                             <th>Color</th>
                         </Tr>
-                        <tr ng-repeat="d in allDrivers">
-                            <td>Image</td>
+                        <tr ng-repeat="d in allDrivers | filter: 'driver' ">
+                            <!-- <td>Image</td> -->
                             <td>{{d.firstName+" "+d.lastName}}</td>
                             <td>{{d.phoneNumber}}</td>
                             <!-- <td>{{d.email}}</td> -->
                             <td>{{d.licenseNo}}</td>
                             <td>{{d.licenseExp}}</td>
                             <td>{{d.experience}}</td>
+                            <td>{{d.cabNo}}</td>
+                            <td>{{d.cabType}}</td>
+                            <td>{{d.model}}</td>
+                            <td>{{d.color}}</td>
                             <td>
                                 <button class="btn btn-outline-warning" ng-click="editDriver(d)" data-toggle="modal" data-target="#exampleModal">
                                     <span class="fa fa-pencil-square-o"></span>

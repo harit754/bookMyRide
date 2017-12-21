@@ -7,8 +7,8 @@
                }
 
 .container-box-2{
-               background-color:black;
-               background: url(../images/taxi1.jpg);
+               background-color: #7283a7;
+               /* background: url(../images/taxi1.jpg); */
                background-repeat: no-repeat;
                background-size: cover;
                border-radius: 5px;
@@ -26,7 +26,7 @@
                  text-align: center;
                  padding: 20px 0 20px 0;
                  border-radius: 5px;
-                 background-color: #d50000; 
+                 background-color: #45526e; 
                  color: white;
                  }
 
