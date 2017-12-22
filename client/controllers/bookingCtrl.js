@@ -1,5 +1,38 @@
 angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window, $localStorage) {
 
+    getTariff();
+
+    // Calculate Fare---------------------------------->
+
+    function getTariff() {
+        $http.get('/tariff').then(function (response) {
+            $scope.allTariffs = response.data;
+            console.log(response.data);
+        });
+    }
+
+    function calculateFare() {
+        var i = 0;
+        for (i; i < allTariffs.length; i++) {
+            if (allTariffs[i].cabType == $scope.bookData.cabType) {
+
+                $scope.baseFare = allTariffs[i].baseFare;
+                $scope.normalRate = allTariffs[i].normalRate;
+                $scope.peakRate = allTariffs[i].peakRate;
+                $scope.startPeakTime = allTariffs[i].startPeakTime;
+                $scope.endPeakTime = allTariffs[i].endPeakTime;
+                break;
+            }
+        }
+
+        var rate = $scope.normalRate;
+
+        $scope.totalFare = $scope.baseFare + (rate * $scope.distance.value / 1000)
+        $scope.$apply();
+    }
+
+
+
     //   Estimate Details ----------------------------->
     $scope.bookData = {};
     $scope.selectCab = function (cabType) {
@@ -65,8 +98,9 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                 if (status == 'OK' && element0.status != 'ZERO_RESULTS') {
 
                     console.log(JSON.stringify(element0));
-                    $scope.distance = element0.distance.text;
-                    $scope.duration = element0.duration.text;
+                    // element0.distance.text ; element0.distance.value
+                    $scope.distance = element0.distance;
+                    $scope.duration = element0.duration;
                     $scope.$apply();
                 } else {
                     alert('Unable to find Distance Via Road');
