@@ -8,6 +8,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     $scope.bookData.cabType = '';
     $localStorage.bookData = {};
     $scope.newBooking = {};
+    $scope.scheduledBooking = {};
     // Calculate Fare---------------------------------->
 
     function getTariff() {
@@ -56,7 +57,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.scheduledBooking.phoneNumber = $localStorage.user.phoneNumber;
         $scope.scheduledBooking.pickupLocation = mapObj.inputPick.value;
         $scope.scheduledBooking.destination = mapObj.inputDrop.value;
-        $scope.scheduledBooking.cabType = $localStorage.bookData.cabType;
+        $scope.scheduledBooking.cabType = $scope.bookData.cabType;
 
         $http.post('/booking', $scope.scheduledBooking).then(function (response) {
             console.log('Data Saved Successfully');

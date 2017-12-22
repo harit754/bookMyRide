@@ -203,3 +203,7 @@ color: white;}
 .selected{border-style: solid;
           border-color: rgb(51, 199, 14);
           border-width: 5px;}
+
+          .moment-picker {
+            z-index: 1060 !important;
+        }
