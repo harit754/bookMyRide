@@ -1,7 +1,11 @@
 angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window, $localStorage) {
 
     getTariff();
-
+    $scope.allTariffs = [];
+    $scope.distance = {};
+    $scope.bookData = {};
+    $scope.alert = '';
+    $scope.bookData.cabType = 'undefined';
     // Calculate Fare---------------------------------->
 
     function getTariff() {
@@ -12,23 +16,28 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     function calculateFare() {
-        var i = 0;
-        for (i; i < allTariffs.length; i++) {
-            if (allTariffs[i].cabType == $scope.bookData.cabType) {
+        if ($scope.bookData.cabType !== 'undefined') {
+            var i = 0;
+            for (i; i < $scope.allTariffs.length; i++) {
+                if ($scope.allTariffs[i].cabType.toLowerCase() == $scope.bookData.cabType) {
 
-                $scope.baseFare = allTariffs[i].baseFare;
-                $scope.normalRate = allTariffs[i].normalRate;
-                $scope.peakRate = allTariffs[i].peakRate;
-                $scope.startPeakTime = allTariffs[i].startPeakTime;
-                $scope.endPeakTime = allTariffs[i].endPeakTime;
-                break;
+                    $scope.baseFare = $scope.allTariffs[i].baseFare;
+                    $scope.normalRate = $scope.allTariffs[i].normalRate;
+                    $scope.peakRate = $scope.allTariffs[i].peakRate;
+                    $scope.startPeakTime = $scope.allTariffs[i].startPeakTime;
+                    $scope.endPeakTime = $scope.allTariffs[i].endPeakTime;
+                    break;
+                }
+
             }
+
+            var rate = parseInt($scope.normalRate);
+
+            $scope.totalFare = parseInt($scope.baseFare) + (rate * parseInt($scope.distance.value) / 1000)
         }
-
-        var rate = $scope.normalRate;
-
-        $scope.totalFare = $scope.baseFare + (rate * $scope.distance.value / 1000)
-        $scope.$apply();
+        else {
+            $scope.alert = 'Please Select a Cab Type!!'
+        }
     }
 
 
@@ -401,6 +410,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
         calculateAndDisplayRoute(directionsService, directionsDisplay);
         getTimeAndDistance();
+        calculateFare();
 
     }
 

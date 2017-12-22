@@ -3,6 +3,9 @@
         <div class="navanim">
             <navbar></navbar>
         </div>
+        <div class="alert alert-danger" role="alert" ng-show="alert">
+            {{alert}}
+        </div>
         <div class="row showcase2">
             <div class="col-md-6 col-sm-6">
                 <div class="showcase2-left">
@@ -59,7 +62,7 @@
                         <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-dark showcase-btn">Get estimate</button>
                         <br>
                         <br>
-                        <div class="estimate-details row" ng-show="distance">
+                        <div class="estimate-details row" ng-show="distance.text">
                             <div class="col-md-4 col-sm-4 est-distance box-effect">
                                 <h5>Est Distance</h5>
                                 <img src="./public/images/distance.svg" alt="Distance">
