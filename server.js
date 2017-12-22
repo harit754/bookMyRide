@@ -4,6 +4,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var userRoute = require('./server/routes/user-route');
 var tariffRoute = require('./server/routes/tariff-route');
+var bookingRoute = require('./server/routes/booking-route');
 var verifyToken = require('./server/routes/verify');
 
 
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static(path.join(__dirname, '/client')));
 
+app.use('/booking', bookingRoute);
 app.use('/user', userRoute);
 
 app.use('/tariff', verifyToken, tariffRoute);
