@@ -45,6 +45,24 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     }
 
+    // Schedule Later nd Book Later Function------------------>
+
+    $scope.scheduleLater = function () {
+        $scope.scheduledBooking.role = 'Client';
+        $scope.scheduledBooking.type = 'Scheduled Booking';
+        $scope.scheduledBooking.fare = $scope.totalFare;
+        $scope.scheduledBooking.firstName = $localStorage.user.firstName;
+        $scope.scheduledBooking.lastName = $localStorage.user.lastName;
+        $scope.scheduledBooking.phoneNumber = $localStorage.user.phoneNumber;
+        $scope.scheduledBooking.pickupLocation = mapObj.inputPick.value;
+        $scope.scheduledBooking.destination = mapObj.inputDrop.value;
+        $scope.scheduledBooking.cabType = $localStorage.bookData.cabType;
+
+        $http.post('/booking', $scope.scheduledBooking).then(function (response) {
+            console.log('Data Saved Successfully');
+        });
+    }
+
     // Book-Now Function---------------------------->
 
     $scope.bookNow = function () {
@@ -52,16 +70,17 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $localStorage.bookData.destination = mapObj.inputDrop.value;
         $localStorage.bookData.estDistance = $scope.distance;
         $localStorage.bookData.estTime = $scope.duration;
-        $localStorage.bookData.estFare = $scope.totalFare
-        $localStorage.bookData.cabType = $scope.bookData.cabType
+        $localStorage.bookData.estFare = $scope.totalFare;
+        $localStorage.bookData.cabType = $scope.bookData.cabType;
 
-        $scope.newBooking.role = "client";
+        $scope.newBooking.role = 'Client';
+        $scope.newBooking.type = 'Current Booking';
         $scope.newBooking.firstName = $localStorage.user.firstName;
         $scope.newBooking.lastName = $localStorage.user.lastName;
         $scope.newBooking.phoneNumber = $localStorage.user.phoneNumber;
         $scope.newBooking.pickupLocation = mapObj.inputPick.value;
         $scope.newBooking.destination = mapObj.inputDrop.value;
-        $scope.newBooking.cabType = $localStorage.bookData.cabType
+        $scope.newBooking.cabType = $localStorage.bookData.cabType;
         $scope.newBooking.fare = $scope.totalFare;
         $scope.newBooking.date = moment().format("MMM Do YY");
         $scope.newBooking.time = moment().format('h:mm:ss a');

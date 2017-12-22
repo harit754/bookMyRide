@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var BookingSchema = mongoose.Schema({
     role: String,
+    type: String,
     firstName: String,
     lastName: String,
     phoneNumber: String,

@@ -9,6 +9,7 @@ router.post('/', function (req, res) {
     console.log(req.body);
     var NewBooking = new booking({
         role: req.body.role,
+        type: req.body.type,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phoneNumber: req.body.phoneNumber,

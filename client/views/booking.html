@@ -83,7 +83,7 @@
 
                             <div class="book-now-later col-md-12 col-sm-12">
                                 <button type="button" ng-click="bookNow()" class="btn btn-lg btn-outline-success showcase-btn book-now">Book Now</button> &nbsp;
-                                <button type="button" ng-click="bookLater()" class="btn btn-lg btn-outline-success showcase-btn book-later">Book Later</button>
+                                <button type="button" ng-click="scheduleLater()" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-outline-success showcase-btn book-later">Book Later</button>
                             </div>
                         </div>
 
@@ -126,6 +126,71 @@
         <my-footer class="footer"></my-footer>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Schedule Booking Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Pickup</span>
+                        <input type="text" disabled class="form-control" ng-model="scheduledBooking.pickupLocation">
+                        <i class="fa fa-map-marker input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Destination</span>
+                        <input type="text" disabled class="form-control" ng-model="scheduledBooking.destination">
+                        <i class="fa fa-map-marker input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Cab Type</span>
+                        <input type="text" class="form-control" ng-model="scheduledBooking.cabType">
+                        <i class="fa fa-taxi input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group modal-input">
+                        <span class="input-group-addon" id="basic-addon1">Fare ₹</span>
+                        <input type="text" class="form-control" ng-model="scheduledBooking.fare">
+                        <i class="fa fa-inr input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group modal-input" moment-picker="scheduledBooking.date" format="DD-MMM">
+                        <span class="input-group-addon" id="basic-addon1">Date</span>
+                        <input type="text" class="form-control" ng-model="scheduledBooking.date">
+                        <i class="fa fa-calendar input-group-addon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group modal-input" moment-picker="scheduledBooking.time" format="HH:mm">
+                        <span class="input-group-addon" id="basic-addon1">Time</span>
+                        <input type="text" class="form-control" ng-model="scheduledBooking.time">
+                        <i class="fa fa-clock-o input-group-addon" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="bookLater()" class="btn btn-outline-primary" data-dismiss="modal">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal ends here -->
+
 
 <!-- ScrollReveal -->
 <script>
