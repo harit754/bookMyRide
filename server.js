@@ -87,6 +87,13 @@ io.sockets.on('connection', function (socket) {
             }
         }
     });
+
+    socket.on('user-booking', function (userData, bookData) {
+        console.log(userData);
+        console.log(bookData);
+        io.emit('new-booking', userData, bookData);
+    });
+
     socket.on('disconnect', function () {
         var i;
         for (i = 0; i < allUsers.length; i++) {

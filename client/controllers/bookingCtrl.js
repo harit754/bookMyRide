@@ -43,6 +43,19 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
     }
 
+    // Book-Now Function---------------------------->
+
+    $scope.bookNow = function () {
+        $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
+        $localStorage.bookData.destination = mapObj.inputDrop.value;
+        $localStorage.bookData.estDistance = $scope.distance;
+        $localStorage.bookData.estTime = $scope.duration;
+        $localStorage.bookData.estFare = $scope.totalFare
+        $localStorage.bookData.cabType = $scope.bookData.cabType
+
+        socket.emit('user-booking', $localStorage.user, $localStorage.bookData);
+    }
+
 
 
     //   Estimate Details ----------------------------->
