@@ -16,7 +16,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     function calculateFare() {
-        debugger;
+
         if ($scope.bookData.cabType == '' || $scope.bookData.cabType == undefined) {
             $scope.alert = 'Please Select a Cab Type!!'
             return;
@@ -39,7 +39,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         var rate = parseInt($scope.normalRate);
 
         $scope.totalFare = parseInt($scope.baseFare) + (rate * parseInt($scope.distance.value) / 1000)
-
+        $scope.$apply();
 
     }
 
@@ -114,7 +114,8 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                     // element0.distance.text ; element0.distance.value
                     $scope.distance = element0.distance;
                     $scope.duration = element0.duration;
-                    $scope.$apply();
+                    calculateFare();
+
                 } else {
                     alert('Unable to find Distance Via Road');
                 }
@@ -414,7 +415,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
         calculateAndDisplayRoute(directionsService, directionsDisplay);
         getTimeAndDistance();
-        calculateFare();
+
 
     }
 
