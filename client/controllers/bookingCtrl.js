@@ -47,8 +47,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     // Schedule Later nd Book Later Function------------------>
-    $scope.bookNow = function () {
-
+    $scope.bookLater = function () {
         $http.post('/booking', $scope.scheduledBooking).then(function (response) {
             console.log('Data Saved Successfully');
         });
