@@ -43,7 +43,7 @@ body{
 /* CSS for Micro  */
 .micro {
     margin-left: 20px;
-    background-image: url(../images/profilepic1.jpg);
+    background-image: url(../images/micro.png);
     border-radius: 50%;
     height: 75px;
     width: 75px;
@@ -72,7 +72,7 @@ body{
 /* CSS for Mini */
 .mini {
     margin-left: 20px;
-    background-image: url(../images/profilepic1.jpg);
+    background-image: url(../images/mini.svg);
     border-radius: 50%;
     height: 75px;
     width: 75px;
@@ -101,7 +101,7 @@ body{
 /* CSS for Prime */
 .prime {
     margin-left: 20px;
-    background-image: url(../images/profilepic1.jpg);
+    background-image: url(../images/prime.png);
     border-radius: 50%;
     height: 75px;
     width: 75px;
@@ -130,7 +130,7 @@ body{
 /* CSS for Sedan */
 .sedan {
     margin-left: 20px;
-    background-image: url(../images/audi.png);
+    background-image: url(../images/sedan.png);
     border-radius: 50%;
     height: 75px;
     width: 75px;
@@ -158,8 +158,10 @@ body{
 
 /* CSS for SUV */
 .suv {
+    border-style: solid;
+    border-color: black;
     margin-left: 20px;
-    background-image: url(../images/jeep.png);
+    background-image: url(../images/suv.svg);
     border-radius: 50%;
     height: 75px;
     width: 75px;
@@ -187,4 +189,11 @@ body{
 
 .book-later{margin-left: 10px;}
 
+.est-distance,.est-time,.est-fare{border-radius: 5px;
+text-align: center;
+max-width: 150px;
+margin-left: 10px;
+background-color: #ffbb33;
+color: white;}
 
+.estimate-details h5{margin-top: 5px;}

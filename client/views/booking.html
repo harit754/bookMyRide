@@ -27,7 +27,7 @@
                         <br>
                         <div class="form-group">
 
-                            <div class="row">
+                            <div class="row slide-left">
                                 <div class="micro">
                                     <span>Micro</span>
                                 </div>
@@ -46,11 +46,34 @@
                             </div>
                         </div>
                         <br>
-                        <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-primary showcase-btn book-now">Book Now</button> &nbsp;
-                        <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-primary showcase-btn book-later">Book Later</button>
-                        <br>
-                        <br>
                         <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-dark showcase-btn">Get estimate</button>
+                        <br>
+                        <br>
+                        <div class="estimate-details row slide-left">
+                            <div class="col-md-4 col-sm-4 est-distance box-effect">
+                                <h5>Est Distance</h5>
+                                <img src="./public/images/distance.svg" alt="Distance">
+                                <br>
+                                <h5>30 kms</h5>
+                            </div>
+                            <div class="col-md-4 col-sm-4 est-time box-effect">
+                                <h5>Est Time</h5>
+                                <img src="./public/images/time.svg" alt="Time">
+                                <br>
+                                <h5>45 mins</h5>
+                            </div>
+                            <div class="col-md-4 col-sm-4 est-fare box-effect">
+                                <h5>Est Fare</h5>
+                                <img src="./public/images/fare.svg" alt="Fare">
+                                <h5>210 INR</h5>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="book-now-later">
+                            <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-success showcase-btn book-now">Book Now</button> &nbsp;
+                            <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-success showcase-btn book-later">Book Later</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -130,5 +153,16 @@
         duration: 2000,
         origin: 'right',
         distance: '300px'
+    });
+    sr.reveal('.slide-right', {
+        duration: 2000,
+        origin: 'right',
+        distance: '300px'
+    });
+    sr.reveal('.slide-left', {
+        duration: 2000,
+        origin: 'left',
+        distance: '300px',
+        delay: 2000
     });
 </script>
