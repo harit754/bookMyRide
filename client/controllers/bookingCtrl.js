@@ -53,7 +53,21 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $localStorage.bookData.estFare = $scope.totalFare
         $localStorage.bookData.cabType = $scope.bookData.cabType
 
+        $scope.newBooking.role = "client";
+        $scop.newBooking.firstName = $localStorage.user.firstName;
+        $scop.newBooking.lastName = $localStorage.user.lastName;
+        $scop.newBooking.phoneNumber = $localStorage.user.phoneNumber;
+        $scope.newBooking.pickupLocation = mapObj.inputPick.value;
+        $scope.newBooking.destination = mapObj.inputDrop.value;
+        $scope.newBooking.cabType = $scope.bookData.cabType;
+        $scope.newBooking.fare = $scope.totalFare;
+        $scope.newBooking.time = moment().format("MMM Do YY");
+        $scope.newBooking.date = moment().format('h:mm:ss a');
+
         socket.emit('user-booking', $localStorage.user, $localStorage.bookData);
+        $http.post('/booking', $scope.newBooking).then(function (response) {
+            console.log('Data Saved Successfully');
+        });
     }
 
 

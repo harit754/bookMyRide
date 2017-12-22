@@ -19,11 +19,11 @@ router.post('/', function (req, res) {
         time: req.body.time,
         date: req.body.date
     });
-    NewTariff.save(function (err, data) {
+    NewBooking.save(function (err, data) {
         if (err) {
             throw err;
         } else {
-            console.log('New Tariff Added Successfully');
+            console.log('New Booking Added Successfully');
             res.end();
         }
     });
