@@ -62,7 +62,7 @@
                         <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-dark showcase-btn">Get estimate</button>
                         <br>
                         <br>
-                        <div class="estimate-details row" ng-show="distance.text">
+                        <div class="estimate-details row" ng-show="totalFare>=0">
                             <div class="col-md-4 col-sm-4 est-distance box-effect">
                                 <h5>Est Distance</h5>
                                 <img src="./public/images/distance.svg" alt="Distance">
@@ -78,7 +78,7 @@
                             <div class="col-md-4 col-sm-4 est-fare box-effect">
                                 <h5>Est Fare</h5>
                                 <img src="./public/images/fare.svg" alt="Fare">
-                                <h5>{{totalFare}} INR</h5>
+                                <h5>{{totalFare.toFixed(2)}} INR</h5>
                             </div>
 
                             <div class="book-now-later col-md-12 col-sm-12">

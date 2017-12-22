@@ -5,7 +5,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     $scope.distance = {};
     $scope.bookData = {};
     $scope.alert = '';
-    $scope.bookData.cabType = 'undefined';
+    $scope.bookData.cabType = '';
     // Calculate Fare---------------------------------->
 
     function getTariff() {
@@ -16,28 +16,31 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     function calculateFare() {
-        if ($scope.bookData.cabType !== 'undefined') {
-            var i = 0;
-            for (i; i < $scope.allTariffs.length; i++) {
-                if ($scope.allTariffs[i].cabType.toLowerCase() == $scope.bookData.cabType) {
+        debugger;
+        if ($scope.bookData.cabType == '' || $scope.bookData.cabType == undefined) {
+            $scope.alert = 'Please Select a Cab Type!!'
+            return;
+        }
 
-                    $scope.baseFare = $scope.allTariffs[i].baseFare;
-                    $scope.normalRate = $scope.allTariffs[i].normalRate;
-                    $scope.peakRate = $scope.allTariffs[i].peakRate;
-                    $scope.startPeakTime = $scope.allTariffs[i].startPeakTime;
-                    $scope.endPeakTime = $scope.allTariffs[i].endPeakTime;
-                    break;
-                }
+        var i = 0;
+        for (i; i < $scope.allTariffs.length; i++) {
+            if ($scope.allTariffs[i].cabType.toLowerCase() == $scope.bookData.cabType) {
 
+                $scope.baseFare = $scope.allTariffs[i].baseFare;
+                $scope.normalRate = $scope.allTariffs[i].normalRate;
+                $scope.peakRate = $scope.allTariffs[i].peakRate;
+                $scope.startPeakTime = $scope.allTariffs[i].startPeakTime;
+                $scope.endPeakTime = $scope.allTariffs[i].endPeakTime;
+                break;
             }
 
-            var rate = parseInt($scope.normalRate);
+        }
 
-            $scope.totalFare = parseInt($scope.baseFare) + (rate * parseInt($scope.distance.value) / 1000)
-        }
-        else {
-            $scope.alert = 'Please Select a Cab Type!!'
-        }
+        var rate = parseInt($scope.normalRate);
+
+        $scope.totalFare = parseInt($scope.baseFare) + (rate * parseInt($scope.distance.value) / 1000)
+
+
     }
 
 
@@ -48,6 +51,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
 
         angular.element('#' + cabType).addClass('selected');
         $scope.bookData.cabType = cabType;
+        $scope.alert = null;
         switch (cabType) {
             case 'micro':
                 angular.element('#mini,#prime,#sedan,#suv').removeClass('selected');
