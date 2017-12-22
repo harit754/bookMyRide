@@ -6,6 +6,8 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     $scope.bookData = {};
     $scope.alert = '';
     $scope.bookData.cabType = '';
+    $localStorage.bookData = {};
+    $scope.newBooking = {};
     // Calculate Fare---------------------------------->
 
     function getTariff() {
@@ -46,23 +48,23 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     // Book-Now Function---------------------------->
 
     $scope.bookNow = function () {
-        $localStorage.bookData.pickupLocation = document.getElementById('pickLocation').value;
-        $localStorage.bookData.destination = mapObj.inputDrop;
+        $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
+        $localStorage.bookData.destination = mapObj.inputDrop.value;
         $localStorage.bookData.estDistance = $scope.distance;
         $localStorage.bookData.estTime = $scope.duration;
         $localStorage.bookData.estFare = $scope.totalFare
         $localStorage.bookData.cabType = $scope.bookData.cabType
 
         $scope.newBooking.role = "client";
-        $scop.newBooking.firstName = $localStorage.user.firstName;
-        $scop.newBooking.lastName = $localStorage.user.lastName;
-        $scop.newBooking.phoneNumber = $localStorage.user.phoneNumber;
+        $scope.newBooking.firstName = $localStorage.user.firstName;
+        $scope.newBooking.lastName = $localStorage.user.lastName;
+        $scope.newBooking.phoneNumber = $localStorage.user.phoneNumber;
         $scope.newBooking.pickupLocation = mapObj.inputPick.value;
         $scope.newBooking.destination = mapObj.inputDrop.value;
-        $scope.newBooking.cabType = $scope.bookData.cabType;
+        $scope.newBooking.cabType = $localStorage.bookData.cabType
         $scope.newBooking.fare = $scope.totalFare;
-        $scope.newBooking.time = moment().format("MMM Do YY");
-        $scope.newBooking.date = moment().format('h:mm:ss a');
+        $scope.newBooking.date = moment().format("MMM Do YY");
+        $scope.newBooking.time = moment().format('h:mm:ss a');
 
         socket.emit('user-booking', $localStorage.user, $localStorage.bookData);
         $http.post('/booking', $scope.newBooking).then(function (response) {
