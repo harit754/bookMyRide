@@ -47,6 +47,12 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     // Schedule Later nd Book Later Function------------------>
+    $scope.bookNow = function () {
+
+        $http.post('/booking', $scope.scheduledBooking).then(function (response) {
+            console.log('Data Saved Successfully');
+        });
+    }
 
     $scope.scheduleLater = function () {
         $scope.scheduledBooking.role = 'Client';
@@ -58,10 +64,6 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.scheduledBooking.pickupLocation = mapObj.inputPick.value;
         $scope.scheduledBooking.destination = mapObj.inputDrop.value;
         $scope.scheduledBooking.cabType = $scope.bookData.cabType;
-
-        $http.post('/booking', $scope.scheduledBooking).then(function (response) {
-            console.log('Data Saved Successfully');
-        });
     }
 
     // Book-Now Function---------------------------->
