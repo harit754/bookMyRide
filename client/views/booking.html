@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <label>Pickup Location</label>
                             <div class="input-group">
-                                <input type="text" id="pickLocation" class="form-control" placeholder="Enter your Location">
+                                <input type="text" id="pickLocation" class="form-control" placeholder="Enter your Location" ng-model="bookData.pickLocation">
                                 <span class="input-group-btn">
                                     <button class="btn btn-secondary" type="button" ng-click="myLocation()">
                                         <i class="fa fa-location-arrow"></i>
@@ -22,26 +22,36 @@
                         </div>
                         <div class="form-group btnanim">
                             <label>Destination Location</label>
-                            <input type="text" id="dropLocation" class="form-control" id="destination" placeholder="Enter your Destination">
+                            <input type="text" id="dropLocation" class="form-control" id="destination" placeholder="Enter your Destination" ng-model="bookData.destination">
                         </div>
                         <br>
                         <div class="form-group">
 
                             <div class="row slide-left">
-                                <div class="micro">
-                                    <span>Micro</span>
+                                <div class="micro" id="micro" ng-click="selectCab('micro');">
+                                    <span>
+                                        <b>Micro</b>
+                                    </span>
                                 </div>
-                                <div class="mini">
-                                    <span>Mini</span>
+                                <div class="mini" id="mini" ng-click="selectCab('mini');">
+                                    <span>
+                                        <b>Mini</b>
+                                    </span>
                                 </div>
-                                <div class="prime">
-                                    <span>Prime</span>
+                                <div class="prime" id="prime" ng-click="selectCab('prime');">
+                                    <span>
+                                        <b>Prime</b>
+                                    </span>
                                 </div>
-                                <div class="sedan">
-                                    <span>Sedan</span>
+                                <div class="sedan" id="sedan" ng-click="selectCab('sedan');">
+                                    <span>
+                                        <b>Sedan</b>
+                                    </span>
                                 </div>
-                                <div class="suv">
-                                    <span>SUV</span>
+                                <div class="suv" id="suv" ng-click="selectCab('suv');">
+                                    <span>
+                                        <b>SUV</b>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -49,31 +59,31 @@
                         <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-dark showcase-btn">Get estimate</button>
                         <br>
                         <br>
-                        <div class="estimate-details row slide-left">
+                        <div class="estimate-details row" ng-show="distance">
                             <div class="col-md-4 col-sm-4 est-distance box-effect">
                                 <h5>Est Distance</h5>
                                 <img src="./public/images/distance.svg" alt="Distance">
                                 <br>
-                                <h5>30 kms</h5>
+                                <h5>{{distance}}</h5>
                             </div>
                             <div class="col-md-4 col-sm-4 est-time box-effect">
                                 <h5>Est Time</h5>
                                 <img src="./public/images/time.svg" alt="Time">
                                 <br>
-                                <h5>45 mins</h5>
+                                <h5>{{duration}}</h5>
                             </div>
                             <div class="col-md-4 col-sm-4 est-fare box-effect">
                                 <h5>Est Fare</h5>
                                 <img src="./public/images/fare.svg" alt="Fare">
                                 <h5>210 INR</h5>
                             </div>
+
+                            <div class="book-now-later col-md-12 col-sm-12">
+                                <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-success showcase-btn book-now">Book Now</button> &nbsp;
+                                <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-success showcase-btn book-later">Book Later</button>
+                            </div>
                         </div>
-                        <br>
-                        <br>
-                        <div class="book-now-later">
-                            <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-success showcase-btn book-now">Book Now</button> &nbsp;
-                            <button type="button" ng-click="estimate()" class="btn btn-lg btn-outline-success showcase-btn book-later">Book Later</button>
-                        </div>
+
                     </form>
                 </div>
             </div>

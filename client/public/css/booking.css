@@ -189,6 +189,8 @@ body{
 
 .book-later{margin-left: 10px;}
 
+.book-now-later{margin-top: 40px;}
+
 .est-distance,.est-time,.est-fare{border-radius: 5px;
 text-align: center;
 max-width: 150px;
@@ -197,3 +199,7 @@ background-color: #ffbb33;
 color: white;}
 
 .estimate-details h5{margin-top: 5px;}
+
+.selected{border-style: solid;
+          border-color: rgb(51, 199, 14);
+          border-width: 5px;}

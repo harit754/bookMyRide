@@ -1,4 +1,35 @@
 angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window, $localStorage) {
+
+    //   Estimate Details ----------------------------->
+    $scope.bookData = {};
+    $scope.selectCab = function (cabType) {
+
+        angular.element('#' + cabType).addClass('selected');
+        $scope.bookData.cabType = cabType;
+        switch (cabType) {
+            case 'micro':
+                angular.element('#mini,#prime,#sedan,#suv').removeClass('selected');
+                break;
+            case 'mini':
+                angular.element('#micro,#prime,#sedan,#suv').removeClass('selected');
+                break;
+            case 'prime':
+                angular.element('#mini,#micro,#sedan,#suv').removeClass('selected');
+                break;
+            case 'sedan':
+                angular.element('#mini,#prime,#micro,#suv').removeClass('selected');
+                break;
+            case 'suv':
+                angular.element('#mini,#prime,#sedan,#micro').removeClass('selected');
+                break;
+            default:
+                angular.element('#mini,#prime,#sedan,#micro,#suv').removeClass('selected');
+
+        }
+        console.log($scope.bookData.cabType);
+    }
+
+
     /************global variables for map manipulation start ***************************/
 
     var socket = io();
@@ -12,6 +43,39 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         zoom: 16,
         center: mapObj.initPos
     });
+
+    // Google Distance Matrix API----------------------------------------->
+
+    function getTimeAndDistance() {
+        var service = new google.maps.DistanceMatrixService();
+        var origin = mapObj.inputPick.value;
+        var destination = mapObj.inputDrop.value;
+        service.getDistanceMatrix(
+            {
+                origins: [origin],
+                destinations: [destination],
+                travelMode: 'DRIVING',
+                // transitOptions: TransitOptions,
+                // drivingOptions: DrivingOptions,
+                unitSystem: google.maps.UnitSystem.METERIC,
+                avoidHighways: false,
+                avoidTolls: false,
+            }, function (response, status) {
+                var element0 = response.rows[0].elements[0];
+                if (status == 'OK' && element0.status != 'ZERO_RESULTS') {
+
+                    console.log(JSON.stringify(element0));
+                    $scope.distance = element0.distance.text;
+                    $scope.duration = element0.duration.text;
+                    $scope.$apply();
+                } else {
+                    alert('Unable to find Distance Via Road');
+                }
+
+            });
+    }
+
+
 
     initSocket(mapObj.map);
     function eraseMarkers() {
@@ -302,6 +366,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         directionsDisplay.setMap(mapObj.map);
 
         calculateAndDisplayRoute(directionsService, directionsDisplay);
+        getTimeAndDistance();
 
     }
 
