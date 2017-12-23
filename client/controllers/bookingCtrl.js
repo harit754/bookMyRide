@@ -40,6 +40,10 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         }
 
         var rate = parseInt($scope.normalRate);
+        var currentTime = moment().format('hh:mm');
+        if (currentTime >= $scope.startPeakTime && currentTime <= $scope.endPeakTime) {
+            rate = parseInt($scope.peakRate);
+        }
 
         $scope.totalFare = parseInt($scope.baseFare) + (rate * parseInt($scope.distance.value) / 1000)
         $scope.$apply();
