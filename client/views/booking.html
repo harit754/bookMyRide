@@ -206,7 +206,7 @@
                 <div class="booking-details row">
                     <div class="col-md-4 col-sm-4 driver-name box-effect">
                         <h5>Driver</h5>
-                        <img src="./public/images/pickup.svg" alt="name">
+                        <img src="./public/images/driver.svg" alt="name">
                         <br>
                         <h5>{{newBooking.driver.firstName +""+newBooking.driver.lastName}}</h5>
                     </div>
@@ -218,7 +218,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4 driver-cab box-effect">
                         <h5>Cab</h5>
-                        <img src="./public/images/phone.svg" alt="cab">
+                        <img src="./public/images/sedan.png" alt="cab">
                         <br>
                         <h5>{{newBooking.driver.cabNo}}</h5>
                     </div>
@@ -227,8 +227,8 @@
                 <br>
                 <p style="text-align:center;padding:20px,20px,20px,20px">
                     Dear
-                    <strong> {{$localStorage.user.firstName+" "+$localStorage.user.lastName}}, </strong> Thank you! for booking your
-                    cab with
+                    <strong> {{$localStorage.user.firstName+" "+$localStorage.user.lastName}}, </strong>
+                    <br> Thank you! for booking your cab with
                     <strong>Book My Ride</strong>
                     . Your Booking Details and booking conformation has been sent to your e-mail :
                     <strong>{{$localStorage.user.email}}.
