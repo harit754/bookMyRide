@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="book-now-later col-md-12 col-sm-12">
-                                <button type="button" ng-click="bookNow()" class="btn btn-lg btn-outline-success showcase-btn book-now">Book Now</button> &nbsp;
+                                <button type="button" ng-click="bookNow()" data-toggle="modal" data-target="#myModal" class="btn btn-lg btn-outline-success showcase-btn book-now">Book Now</button> &nbsp;
                                 <button type="button" ng-click="scheduleLater()" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-outline-success showcase-btn book-later">Book Later</button>
                             </div>
                         </div>
@@ -190,6 +190,62 @@
     </div>
 </div>
 <!-- Modal Scedule Later ends here -->
+
+<!-- Modal booking successful -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="paymentCtrl.goRoot()">&times;</button>
+                <h1 class="modal-title" style=" color: #e84c3d;
+                            font-size: 42px;">Cab Booked Successfully !</h1>
+            </div>
+            <div class="modal-body">
+                <div class="booking-details row">
+                    <div class="col-md-4 col-sm-4 driver-name box-effect">
+                        <h5>Driver</h5>
+                        <img src="./public/images/pickup.svg" alt="name">
+                        <br>
+                        <h5>{{newBooking.driver.firstName +""+newBooking.driver.lastName}}</h5>
+                    </div>
+                    <div class="col-md-4 col-sm-4 driver-number box-effect">
+                        <h5>Number</h5>
+                        <img src="./public/images/phone.svg" alt="number">
+                        <br>
+                        <br>
+                        <h5>{{newBooking.driver.phoneNumber}}</h5>
+                    </div>
+                    <div class="col-md-4 col-sm-4 driver-cab box-effect">
+                        <h5>Cab</h5>
+                        <img src="./public/images/phone.svg" alt="cab">
+                        <br>
+                        <h5>{{newBooking.driver.cabNo}}</h5>
+                    </div>
+                </div>
+                <p style="text-align:center;padding:20px,20px,20px,20px">
+                    Dear
+                    <strong> {{$localStorage.user.firstName+" "+$localStorage.user.lastName}}, </strong> Thank you! for booking your
+                    cab with
+                    <strong>Book My Ride</strong>
+                    . Your Booking Details and booking conformation has been sent to your e-mail :
+                    <strong>{{$localStorage.user.email}}
+                    </strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="paymentCtrl.goRoot()">Close</button>
+                <!-- 
+                <a href="/">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="paymentCtrl.goRoot()">Close</button>
+                </a> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal Booking Successful ends Here -->
 
 
 <!-- ScrollReveal -->
