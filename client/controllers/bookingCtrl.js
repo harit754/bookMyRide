@@ -84,7 +84,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.newBooking.destination = mapObj.inputDrop.value;
         $scope.newBooking.cabType = $localStorage.bookData.cabType;
         $scope.newBooking.fare = $scope.totalFare;
-        $scope.newBooking.date = moment().format("MMM Do YY");
+        $scope.newBooking.date = moment().format("Do MMM");
         $scope.newBooking.time = moment().format('h:mm:ss a');
 
         socket.emit('user-booking', $localStorage.user, $localStorage.bookData);
