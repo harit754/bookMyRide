@@ -9,6 +9,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     $localStorage.bookData = {};
     $scope.newBooking = {};
     $scope.scheduledBooking = {};
+    $scope.allDrivers = [];
     // Calculate Fare---------------------------------->
 
     function getTariff() {
@@ -92,7 +93,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.newBooking.date = moment().format("Do MMM");
         $scope.newBooking.time = moment().format('h:mm:ss a');
 
-        alert($scope.newBooking);
+        console.log($scope.newBooking);
         socket.emit('user-booking', $scope.newBooking);
         $http.post('/booking', $scope.newBooking).then(function (response) {
             console.log('Data Saved Successfully');
@@ -117,7 +118,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
                 nearCab = $scope.allDrivers[i].driver;
             }
         }
-        alert(JSON.stringify(nearCab));
+        // alert(JSON.stringify(nearCab));
         //Show Modal for Selected Cab
 
         //Emit Selected cab to every one

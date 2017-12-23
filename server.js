@@ -91,6 +91,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('user-booking', function (newBooking) {
+        console.log('You have Got a New Booking');
         console.log(newBooking);
         io.emit('new-booking', newBooking);
     });
