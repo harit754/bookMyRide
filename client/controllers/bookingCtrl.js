@@ -92,6 +92,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.newBooking.date = moment().format("Do MMM");
         $scope.newBooking.time = moment().format('h:mm:ss a');
 
+        alert($scope.newBooking);
         socket.emit('user-booking', $scope.newBooking);
         $http.post('/booking', $scope.newBooking).then(function (response) {
             console.log('Data Saved Successfully');
