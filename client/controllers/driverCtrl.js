@@ -6,6 +6,7 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
     $scope.newBooking = {};
     socket.on('new-booking', function (newBooking) {
         console.log(newBooking);
+        angular.element('#myModal').modal('toggle');
         $scope.newBooking = angular.copy(newBooking);
         $scope.$apply();
         //If The dRIVER email matches equaks to my email.

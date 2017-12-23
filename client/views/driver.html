@@ -53,6 +53,63 @@
     <my-footer class="footer "></my-footer>
 </div>
 
+<!-- Modal You have got a new Booking -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="paymentCtrl.goRoot()">&times;</button>
+                <h1 class="modal-title" style=" color: #e84c3d;
+                                font-size: 42px;">You Have Got a New Booking !</h1>
+            </div>
+            <div class="modal-body">
+                <div class="booking-details row">
+                    <div class="col-md-4 col-sm-4 client-pickup box-effect">
+                        <h5>Pickup</h5>
+                        <img src="./public/images/pickup.svg" alt="location">
+                        <br>
+                        <h5>{{newBooking.pickupLocation}}</h5>
+                    </div>
+                    <div class="col-md-4 col-sm-4 client-name box-effect">
+                        <h5>Client</h5>
+                        <img src="./public/images/client.svg" alt="name">
+                        <br>
+                        <br>
+                        <h5>{{newBooking.firstName +""+newBooking.lastName}}</h5>
+                    </div>
+                    <div class="col-md-4 col-sm-4 client-number box-effect">
+                        <h5>Number</h5>
+                        <img src="./public/images/phone.svg" alt="number">
+                        <br>
+                        <br>
+                        <h5>{{newBooking.phoneNumber}}</h5>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <p style="text-align:center;padding:20px,20px,20px,20px">
+                    Dear
+                    <strong> {{$localStorage.user.firstName+" "+$localStorage.user.lastName}}, </strong> You have recieved a new booking.
+                    Kindly reach at the earliest.
+                    <br> Drive Safe !!
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <!-- 
+                    <a href="/">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="paymentCtrl.goRoot()">Close</button>
+                    </a> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal You have got a new Booking ends Here -->
+
+
 <script>
     window.sr = ScrollReveal();
     sr.reveal('.navanim', {
