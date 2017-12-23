@@ -3,6 +3,14 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
     // <------------------------------------------Socket.io code----------------------------------------->
 
     var socket = io();
+    socket.on('new-booking', function (newBooking) {
+        console.log(newBooking);
+        $scope.newBooking = angular.copy(newBooking);
+        //If The dRIVER email matches equaks to my email.
+        //Show modal for new Booking User
+
+
+    });
     var allUserMarkers = [];
     function eraseMarkers() {
         while (allUserMarkers.length) {
@@ -36,14 +44,7 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
         socket.on('re-draw-driver-map', function (allUsers) {
             drawUsersMarker(allUsers, map);
         });
-        socket.on('new-booking', function (newBooking) {
-            console.log(newBooking);
-            $scope.newBooking = angular.copy(newBooking);
-            //If The dRIVER email matches equaks to my email.
-            //Show modal for new Booking User
 
-
-        });
     }
 
     // <--------------------------------------Google Map Code------------------------------------------->
