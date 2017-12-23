@@ -195,7 +195,7 @@ body{
 text-align: center;
 max-width: 150px;
 margin-left: 10px;
-background-color: #ffbb33;
+background-color: #ffbb33; 
 color: white;}
 
 .estimate-details h5{margin-top: 5px;}

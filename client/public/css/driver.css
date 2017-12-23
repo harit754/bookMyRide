@@ -44,3 +44,12 @@
 .current-booking h2 {
     
 }
+
+.client-pickup,.client-name,.client-number{border-radius: 5px;
+    text-align: center;
+    max-width: 150px;
+    margin-left: 10px;
+    background-color: #1C2331;
+    color: white;}
+    
+    .booking-details h5{margin-top: 5px;}

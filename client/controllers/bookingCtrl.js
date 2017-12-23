@@ -98,6 +98,25 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
 
+    // Assign Driver ----------------------------------------.
+    function distance(p1, p2) {
+        var a = new google.maps.LatLng(p1.lat, p1.lng);
+        var b = new google.maps.LatLng(p2.lat, p2.lng);
+        return google.maps.geometry.spherical.computeDistanceBetween(a, b);
+    }
+
+    function nearestCab(myLocation, allDrivers) {
+        var minDist = distance(myLocation, allDrivers[0].data.Location);
+        var nearCab = allDrivers[0].data;
+        for (var i = 1; i < allDrivers.length; i++) {
+            var dist = distance(myLocation, allDrivers[i].data.Location);
+            if (dist < minDist) {
+                minDist = dist;
+                nearCab = allDrivers[i].data;
+            }
+        }
+        return nearCab;
+    }
 
     //   Estimate Details ----------------------------->
     $scope.bookData = {};

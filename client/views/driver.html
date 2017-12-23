@@ -8,10 +8,24 @@
             <div class="showcase4-left">
                 <h1 class="box-effect slide-left">Current Booking</h1>
                 <br>
-                <div class="current-booking">
-                    <h2 id="client-pickup">Pickup Loation</h2>
-                    <h2 id="client-name">Client Name</h2>
-                    <h2 id="client-number">Client's Number</h2>
+                <div class="booking-details row slide-left">
+                    <div class="col-md-4 col-sm-4 client-pickup box-effect">
+                        <h5>Pickup</h5>
+                        <img src="./public/images/pickup.svg" alt="location">
+                        <br>
+                        <h5>{{bookData.pickupLocation}}</h5>
+                    </div>
+                    <div class="col-md-4 col-sm-4 client-name box-effect">
+                        <h5>Client</h5>
+                        <img src="./public/images/client.svg" alt="name">
+                        <br>
+                        <h5>{{userData.firstName +""+userData.lastName}}</h5>
+                    </div>
+                    <div class="col-md-4 col-sm-4 client-number box-effect">
+                        <h5>Number</h5>
+                        <img src="./public/images/phone.svg" alt="number">
+                        <h5>{{userData.number}}</h5>
+                    </div>
                 </div>
             </div>
         </div>
