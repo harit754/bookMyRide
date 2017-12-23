@@ -105,16 +105,21 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         return google.maps.geometry.spherical.computeDistanceBetween(a, b);
     }
 
-    function nearestCab(myLocation, allDrivers) {
-        var minDist = distance(myLocation, allDrivers[0].data.Location);
-        var nearCab = allDrivers[0].data;
-        for (var i = 1; i < allDrivers.length; i++) {
-            var dist = distance(myLocation, allDrivers[i].data.Location);
+    function nearestCab() {
+        var minDist = distance($localStorage.user.pos, $scope.allDrivers[0].driver.pos);
+        var nearCab = $scope.allDrivers[0].driver;
+        for (var i = 1; i < $scope.allDrivers.length; i++) {
+            var dist = distance($localStorage.user.pos, $scope.allDrivers[i].driver.pos);
             if (dist < minDist) {
                 minDist = dist;
-                nearCab = allDrivers[i].data;
+                nearCab = $scope.allDrivers[i].driver;
             }
         }
+        alert(JSON.stringify(nearCab));
+        //Show Modal for Selected Cab
+
+        //Emit Selected cab to every one
+
         return nearCab;
     }
 
@@ -211,6 +216,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             /*For loop
             Draw cab Icon at Pos of every driver
             */
+            $scope.allDrivers = allDrivers;
             eraseMarkers();
             var i;
             for (i = 0; i < allDrivers.length; i++) {
