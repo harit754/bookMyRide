@@ -72,6 +72,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     // Book-Now Function---------------------------->
 
     $scope.bookNow = function () {
+        nearestCab();
         $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
         $localStorage.bookData.destination = mapObj.inputDrop.value;
         $localStorage.bookData.estDistance = $scope.distance;
@@ -91,7 +92,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.newBooking.date = moment().format("Do MMM");
         $scope.newBooking.time = moment().format('h:mm:ss a');
 
-        socket.emit('user-booking', $localStorage.user, $localStorage.bookData);
+        socket.emit('user-booking', $scope.newBooking);
         $http.post('/booking', $scope.newBooking).then(function (response) {
             console.log('Data Saved Successfully');
         });
@@ -119,8 +120,9 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         //Show Modal for Selected Cab
 
         //Emit Selected cab to every one
+        $scope.newBooking.driver = nearCab;
+        // return nearCab;
 
-        return nearCab;
     }
 
     //   Estimate Details ----------------------------->

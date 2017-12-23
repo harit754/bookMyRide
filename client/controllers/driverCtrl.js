@@ -36,9 +36,11 @@ angular.module('bookMyRide').controller('driverCtrl', function ($scope, $http, $
         socket.on('re-draw-driver-map', function (allUsers) {
             drawUsersMarker(allUsers, map);
         });
-        socket.on('new-booking', function (userData, bookData) {
-            $scope.bookData = angular.copy(bookData);
-            $scope.userData = angular.copy(userData);
+        socket.on('new-booking', function (newBooking) {
+            $scope.newBooking = angular.copy(newBooking);
+            //Use For Loop If The dRIVER email matches equaks to my email.
+            //Show modal for new Booking User
+
         });
     }
 

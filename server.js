@@ -83,17 +83,16 @@ io.sockets.on('connection', function (socket) {
         console.log('driver email id ' + driverEmail.email);
         var i;
         for (i = 0; i < allDrivers.length; i++) {
-            if (allDrivers[i].user.email == driverEmail.email) {
+            if (allDrivers[i].driver.email == driverEmail.email) {
                 allDrivers.splice(i, 1);
                 io.emit('re-draw-user-map', allDrivers);
             }
         }
     });
 
-    socket.on('user-booking', function (userData, bookData) {
-        console.log(userData);
-        console.log(bookData);
-        io.emit('new-booking', userData, bookData);
+    socket.on('user-booking', function (newBooking) {
+        console.log(newBooking);
+        io.emit('new-booking', newBooking);
     });
 
     socket.on('disconnect', function () {
