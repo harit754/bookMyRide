@@ -214,7 +214,6 @@
                         <h5>Number</h5>
                         <img src="./public/images/phone.svg" alt="number">
                         <br>
-                        <br>
                         <h5>{{newBooking.driver.phoneNumber}}</h5>
                     </div>
                     <div class="col-md-4 col-sm-4 driver-cab box-effect">
@@ -224,13 +223,18 @@
                         <h5>{{newBooking.driver.cabNo}}</h5>
                     </div>
                 </div>
+                <br>
+                <br>
                 <p style="text-align:center;padding:20px,20px,20px,20px">
                     Dear
                     <strong> {{$localStorage.user.firstName+" "+$localStorage.user.lastName}}, </strong> Thank you! for booking your
                     cab with
                     <strong>Book My Ride</strong>
                     . Your Booking Details and booking conformation has been sent to your e-mail :
-                    <strong>{{$localStorage.user.email}}
+                    <strong>{{$localStorage.user.email}}.
+                    </strong>
+                    And Mobile Number :
+                    <strong>{{$localStorage.user.phoneNumber}}.
                     </strong>
                 </p>
             </div>
