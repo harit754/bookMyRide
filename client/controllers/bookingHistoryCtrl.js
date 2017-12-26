@@ -1,4 +1,4 @@
-angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, $location, $window, $localStorage) {
+angular.module('bookMyRide').controller('bookingHistoryCtrl', function ($scope, $http, $location, $window, $localStorage) {
 
 
 });
