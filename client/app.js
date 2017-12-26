@@ -43,7 +43,7 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         })
         .when('/booking-history', {
             templateUrl: './views/booking-history.html',
-            controller: 'bookingCtrl'
+            controller: 'loginCtrl'
         });
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
