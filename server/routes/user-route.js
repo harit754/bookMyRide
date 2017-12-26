@@ -180,7 +180,7 @@ router.put('/driver/:id', function (req, res) {
         lastName: req.body.lastName,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
-        password: hashPassword,
+        password: req.body.password,
         licenseNo: req.body.licenseNo,
         licenseExp: req.body.licenseExp,
         experience: req.body.experience,
