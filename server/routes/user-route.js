@@ -40,7 +40,6 @@ router.put('/change-password/:email', function (req, res) {
                     });
                 }
             });
-
         }
     });
 
