@@ -1,16 +1,17 @@
 
-.box-container{background-color:black;
-               background: url(../images/taxi2.jpg);
-               background-repeat: no-repeat;
-               background-size: cover;
+.box-container{background: #ff6e7f;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #bfe9ff, #ff6e7f);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #bfe9ff, #ff6e7f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
                border-radius: 5px;
                }
 
 .container-box-2{
-               background-color: #7283a7;
-               /* background: url(../images/taxi1.jpg); */
-               background-repeat: no-repeat;
-               background-size: cover;
+    background: #757F9A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
                border-radius: 5px;
                }
 
