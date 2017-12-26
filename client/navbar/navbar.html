@@ -37,7 +37,7 @@
                 <a class="nav-link" ng-click="" href="#/change-password">
                     <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
             </li>
-            <li class="nav-item" ng-show="$localStorage.user">
+            <li class="nav-item" ng-show="$localStorage.user.role.toLowerCase()=='user' || $localStorage.user.role.toLowerCase()=='driver'">
                 <a class="nav-link" ng-click="" href="#/booking-history">
                     <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Booking History</a>
             </li>
