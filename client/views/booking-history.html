@@ -30,6 +30,30 @@
                     <td>{{b.fare}}</td>
                 </tr>
             </table>
+
+            <!-- Booking History Table for Driver -->
+            <table class="table table-condensed table-responsive slide-right booking-history-table-client">
+                <Tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Pickup Location</th>
+                    <th>Destination</th>
+                    <th>Clients's Name</th>
+                    <th>Cab Type</th>
+                    <th>Cab No.</th>
+                    <th>Fare</th>
+                </Tr>
+                <tr ng-repeat="b in allbookings">
+                    <td>{{b.date}}</td>
+                    <td>{{b.time}}</td>
+                    <td>{{b.pickupLocation}}</td>
+                    <td>{{b.destination}}</td>
+                    <td>{{b.firstName + " " + b.lastName}}</td>
+                    <td>{{b.driver.cabType}}</td>
+                    <td>{{b.driver.cabNo}}</td>
+                    <td>{{b.fare}}</td>
+                </tr>
+            </table>
         </div>
         <div class="col-md-1 col-sm-1"></div>
     </div>

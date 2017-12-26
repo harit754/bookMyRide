@@ -14,4 +14,5 @@ background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, F
 border-radius: 5px;
 }
 
-.booking-history-table-client{color: white;}
+.booking-history-table-client{color: white;
+font-size: 12px;}
