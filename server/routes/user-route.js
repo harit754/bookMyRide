@@ -7,13 +7,43 @@ var jwt = require('jsonwebtoken');
 
 // Sign-up GET-USER-Method Route---------------------------------------------->
 router.get('/get-user/:email', function (req, res) {
-    user.findOne({ email: req.params.email }, function (err, data) {
+    user.findOne({ email: req.body.email }, function (err, user) {
         if (err) {
             throw err;
         } else {
             res.json(data);
         }
     });
+});
+
+// Change-Password Method------------------------------------------------->
+router.put('/change-password/:email', function (req, res) {
+    user.findOne({ email: req.params.email }, function (err, user) {
+        if (err) return res.status(500).send('Error on the server.');
+        if (!user) return res.status(404).send('No user found.');
+        var passwordIsValid = bcrypt.compareSync(req.body.oldPassword, user.password);
+        if (!passwordIsValid) return res.status(401).send({ auth: false, msg: 'old password did not match' });
+        if (passwordIsValid) {
+            bcrypt.hash(req.body.newPassword, 5, function (err, hashPassword) {
+                if (err) {
+                    throw err;
+                } else {
+                    user.findOneAndUpdate({ email: req.params.email }, {
+                        password: hashPassword,
+                    }, function (err, data) {
+                        if (err) {
+                            throw err;
+                        } else {
+                            console.log('New Password Updated Successfully');
+                            res.end();
+                        }
+                    });
+                }
+            });
+
+        }
+    });
+
 });
 
 
