@@ -8,7 +8,7 @@
             <h1 class="box-effect slide-left">Booking History</h1>
 
             <!-- Booking History Table for Client -->
-            <table class="table table-condensed table-responsive slide-right booking-history-table-client">
+            <table class="table table-condensed table-responsive slide-right booking-history-table-client" ng-show="$localStorage.user.role.toLowerCase()=='user'">
                 <Tr>
                     <th>Date</th>
                     <th>Time</th>
@@ -32,7 +32,7 @@
             </table>
 
             <!-- Booking History Table for Driver -->
-            <table class="table table-condensed table-responsive slide-right booking-history-table-client">
+            <table class="table table-condensed table-responsive slide-right booking-history-table-client" ng-show="$localStorage.user.role.toLowerCase()=='driver'">
                 <Tr>
                     <th>Date</th>
                     <th>Time</th>
