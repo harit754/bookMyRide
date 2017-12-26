@@ -22,7 +22,7 @@ router.put('/change-password/:email', function (req, res) {
         if (err) return res.status(500).send('Error on the server.');
         if (!user) return res.status(404).send('No user found.');
         var passwordIsValid = bcrypt.compareSync(req.body.oldPassword, user.password);
-        if (!passwordIsValid) return res.status(401).send({ auth: false, msg: 'old password did not match' });
+        if (!passwordIsValid) return res.status(401).send('old password did not match');
         if (passwordIsValid) {
             bcrypt.hash(req.body.newPassword, 5, function (err, hashPassword) {
                 if (err) {
