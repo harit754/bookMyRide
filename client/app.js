@@ -40,6 +40,10 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
         .when('/change-password', {
             templateUrl: './views/change-password.html',
             controller: 'loginCtrl'
+        })
+        .when('/booking-history', {
+            templateUrl: './views/booking-history.html',
+            controller: 'bookingCtrl'
         });
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
