@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
 });
 
 router.get('/', function (req, res) {
-    tariff.find({}, function (err, data) {
+    booking.find({}, function (err, data) {
         if (err) {
             throw err;
         } else {
