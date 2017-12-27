@@ -20,6 +20,9 @@ router.post('/', function (req, res) {
         time: req.body.time,
         date: req.body.date
     });
+
+    if (req.body.driver) NewBooking.driver = req.body.driver;
+
     NewBooking.save(function (err, data) {
         if (err) {
             throw err;
