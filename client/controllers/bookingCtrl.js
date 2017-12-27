@@ -76,7 +76,6 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         nearestCab();
 
         if ($scope.newBooking.driver) {
-            angular.element('#myModal').modal('toggle');
             $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
             $localStorage.bookData.destination = mapObj.inputDrop.value;
             $localStorage.bookData.estDistance = $scope.distance;
@@ -101,6 +100,7 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
             $http.post('/booking', $scope.newBooking).then(function (response) {
                 console.log('Data Saved Successfully');
             });
+            angular.element('#myModal').modal('toggle');
         }
 
     }
