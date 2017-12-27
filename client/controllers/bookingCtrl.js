@@ -70,34 +70,39 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
         $scope.scheduledBooking.cabType = $scope.bookData.cabType;
     }
 
-    // Book-Now Function---------------------------->
+    // Book-Now Function------------f-----i----------->
 
     $scope.bookNow = function () {
         nearestCab();
-        $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
-        $localStorage.bookData.destination = mapObj.inputDrop.value;
-        $localStorage.bookData.estDistance = $scope.distance;
-        $localStorage.bookData.estTime = $scope.duration;
-        $localStorage.bookData.estFare = $scope.totalFare;
-        $localStorage.bookData.cabType = $scope.bookData.cabType;
 
-        $scope.newBooking.role = 'Client';
-        $scope.newBooking.type = 'Current Booking';
-        $scope.newBooking.firstName = $localStorage.user.firstName;
-        $scope.newBooking.lastName = $localStorage.user.lastName;
-        $scope.newBooking.phoneNumber = $localStorage.user.phoneNumber;
-        $scope.newBooking.pickupLocation = mapObj.inputPick.value;
-        $scope.newBooking.destination = mapObj.inputDrop.value;
-        $scope.newBooking.cabType = $localStorage.bookData.cabType;
-        $scope.newBooking.fare = $scope.totalFare;
-        $scope.newBooking.date = moment().format("Do MMM");
-        $scope.newBooking.time = moment().format('h:mm:ss a');
+        if ($scope.newBooking.driver) {
+            angular.element('#myModal').modal('toggle');
+            $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
+            $localStorage.bookData.destination = mapObj.inputDrop.value;
+            $localStorage.bookData.estDistance = $scope.distance;
+            $localStorage.bookData.estTime = $scope.duration;
+            $localStorage.bookData.estFare = $scope.totalFare;
+            $localStorage.bookData.cabType = $scope.bookData.cabType;
 
-        console.log($scope.newBooking);
-        socket.emit('user-booking', $scope.newBooking);
-        $http.post('/booking', $scope.newBooking).then(function (response) {
-            console.log('Data Saved Successfully');
-        });
+            $scope.newBooking.role = 'Client';
+            $scope.newBooking.type = 'Current Booking';
+            $scope.newBooking.firstName = $localStorage.user.firstName;
+            $scope.newBooking.lastName = $localStorage.user.lastName;
+            $scope.newBooking.phoneNumber = $localStorage.user.phoneNumber;
+            $scope.newBooking.pickupLocation = mapObj.inputPick.value;
+            $scope.newBooking.destination = mapObj.inputDrop.value;
+            $scope.newBooking.cabType = $localStorage.bookData.cabType;
+            $scope.newBooking.fare = $scope.totalFare;
+            $scope.newBooking.date = moment().format("Do MMM");
+            $scope.newBooking.time = moment().format('h:mm:ss a');
+
+            console.log($scope.newBooking);
+            socket.emit('user-booking', $scope.newBooking);
+            $http.post('/booking', $scope.newBooking).then(function (response) {
+                console.log('Data Saved Successfully');
+            });
+        }
+
     }
 
 
@@ -109,22 +114,28 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     }
 
     function nearestCab() {
-        var minDist = distance($localStorage.user.pos, $scope.allDrivers[0].driver.pos);
-        var nearCab = $scope.allDrivers[0].driver;
-        for (var i = 1; i < $scope.allDrivers.length; i++) {
-            var dist = distance($localStorage.user.pos, $scope.allDrivers[i].driver.pos);
-            if (dist < minDist) {
-                minDist = dist;
-                nearCab = $scope.allDrivers[i].driver;
-            }
+        if ($scope.allDrivers.length <= 0) {
+            $scope.newBooking.driver = {};
+            $scope.alert = 'No Cab Available.';
         }
-        // alert(JSON.stringify(nearCab));
-        //Show Modal for Selected Cab
+        else {
+            var minDist = distance($localStorage.user.pos, $scope.allDrivers[0].driver.pos);
+            var nearCab = $scope.allDrivers[0].driver;
+            for (var i = 1; i < $scope.allDrivers.length; i++) {
+                var dist = distance($localStorage.user.pos, $scope.allDrivers[i].driver.pos);
+                if (dist < minDist) {
+                    minDist = dist;
+                    nearCab = $scope.allDrivers[i].driver;
+                }
+            }
+            if (distance($localStorage.user.pos, nearCab.pos) < 5000)
+                $scope.newBooking.driver = nearCab;
+            else {
+                $scope.newBooking.driver = {};
+                $scope.alert = 'No Cab Available in Radius of 5km.';
+            }
 
-        //Emit Selected cab to every one
-        $scope.newBooking.driver = nearCab;
-        // return nearCab;
-
+        }
     }
 
     //   Estimate Details ----------------------------->
