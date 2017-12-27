@@ -18,11 +18,14 @@ router.get('/get-user/:email', function (req, res) {
 
 // Change-Password Method------------------------------------------------->
 router.put('/change-password/:email', function (req, res) {
-    user.findOne({ email: req.params.email }, function (err, user) {
+    console.log('CHange PAsssword');
+    console.log(req.body);
+
+    user.findOne({ email: req.params.email }, function (err, userData) {
         if (err) return res.status(500).send('Error on the server.');
-        if (!user) return res.status(404).send('No user found.');
-        var passwordIsValid = bcrypt.compareSync(req.body.oldPassword, user.password);
-        if (!passwordIsValid) return res.status(401).send('old password did not match');
+        if (!userData) return res.status(404).send('No user found.');
+        var passwordIsValid = bcrypt.compareSync(req.body.oldPassword, userData.password);
+        if (!passwordIsValid) return res.send('Old password did not match.');
         if (passwordIsValid) {
             bcrypt.hash(req.body.newPassword, 5, function (err, hashPassword) {
                 if (err) {
@@ -35,7 +38,7 @@ router.put('/change-password/:email', function (req, res) {
                             throw err;
                         } else {
                             console.log('New Password Updated Successfully');
-                            res.end();
+                            res.status(200).send('New Password Updated Successfully !');
                         }
                     });
                 }

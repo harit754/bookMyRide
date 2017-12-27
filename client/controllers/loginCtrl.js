@@ -4,22 +4,31 @@ angular.module('bookMyRide').controller('loginCtrl', function ($scope, $http, $l
         $scope.showLogin = true;
         $scope.newUser = {};
         $scope.loginUser = {};
-        $scope.changePassword = {};
+        $scope.passwordData = {};
         $scope.myAlert = '';
     }
 
     $scope.changePassword = function () {
         if ($scope.newPassword === $scope.confirmPassword) {
-            $scope.changePassword.newPassword = $scope.newPassword;
-            $scope.changePassword.oldPassword = $scope.oldPassword;
-            $http.put('/user/change-password/' + $localStorage.user.email, $scope.changePassword).then(function (response) {
-                if (response.data) {
-                    $scope.myAlert = 'User already exist! Please enter a different email-address!';
-                } else {
+
+            $scope.passwordData.newPassword = $scope.newPassword;
+            $scope.passwordData.oldPassword = $scope.oldPassword;
+
+            $http.put('/user/change-password/' + $localStorage.user.email, $scope.passwordData).then(function (response) {
+
+                if (response.data == 'New Password Updated Successfully !') {
                     console.log('Password Changed');
                     alert('Password Changed');
-                    $scope.myAlert = 'Old Password is not correct !'
+                    $scope.myAlert = response.data;
                 }
+                else if (response.data) {
+                    $scope.myAlert = response.data;
+                }
+
+
+                // alert('Password Changed');
+                console.log(response.data);
+
             });
         } else {
             $scope.myAlert = 'New passwords did not match, Please confirm new password !'

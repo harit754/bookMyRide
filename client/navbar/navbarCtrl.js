@@ -11,13 +11,14 @@ angular.module('bookMyRide').controller('NavbarCtrl', ['$scope', '$location', 'A
     }
 
     $scope.home = function () {
-        if ($localStorage.user.role.toLowerCase() == 'user') {
+        var role = $localStorage.user.role.toLowerCase();
+        if (role == 'user') {
             $location.path('/booking');
         }
-        else if ($localStorage.user.role.toLowerCase() == 'driver') {
+        else if (role == 'driver') {
             $location.path('/driver');
         }
-        else if ($localStorage.user.role.toLowerCase() == 'admin') {
+        else if (role == 'admin') {
             $location.path('/tariff');
         }
         else {

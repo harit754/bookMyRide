@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
-    <a class="navbar-brand" href="#">Book
+    <a class="navbar-brand" href="#/">Book
         <span>My Ride</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -15,32 +15,34 @@
                 <a class="nav-link" ng-click="home()">Home
                 </a>
             </li>
+            <li class="nav-item" ng-show="$localStorage.user.role.toLowerCase()=='user' || $localStorage.user.role.toLowerCase()=='driver'">
+                <a class="nav-link" ng-click="" href="#/booking-history">
+                    <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Booking History</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#/tariff" ng-show="$localStorage.user.role.toLowerCase()=='admin'">Tariff</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#/driver-cab" ng-show="$localStorage.user.role.toLowerCase()=='admin'">Driver/Cab</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
-            </li>
+            </li> -->
             <li class="nav-item" ng-hide="$localStorage.user">
                 <a class="nav-link" href="#/login">
                     <i class="fa fa-user" aria-hidden="true"></i> &nbsp;Login</a>
+            </li>
+            <li class="nav-item" ng-show="$localStorage.user">
+                <a class="nav-link" ng-click="" href="#/change-password">
+                    <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
             </li>
             <li class="nav-item" ng-show="$localStorage.user">
                 <a class="nav-link" ng-click="logout()" href="/">
                     <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout</a>
             </li>
             <li class="navbar-welcome" ng-show="$localStorage.user">&nbsp; | &nbsp;</li>
-            <li class="nav-item" ng-show="$localStorage.user">
-                <a class="nav-link" ng-click="" href="#/change-password">
-                    <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
-            </li>
-            <li class="nav-item" ng-show="$localStorage.user.role.toLowerCase()=='user' || $localStorage.user.role.toLowerCase()=='driver'">
-                <a class="nav-link" ng-click="" href="#/booking-history">
-                    <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Booking History</a>
-            </li>
+
+
         </ul>
     </div>
 </nav>
