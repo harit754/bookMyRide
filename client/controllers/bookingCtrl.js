@@ -73,9 +73,10 @@ angular.module('bookMyRide').controller('bookingCtrl', function ($scope, $http, 
     // Book-Now Function------------f-----i----------->
 
     $scope.bookNow = function () {
+        debugger;
         nearestCab();
-
-        if ($scope.newBooking.driver) {
+        debugger;
+        if ($scope.newBooking.driver.cabType) {
             $localStorage.bookData.pickupLocation = mapObj.inputPick.value;
             $localStorage.bookData.destination = mapObj.inputDrop.value;
             $localStorage.bookData.estDistance = $scope.distance;

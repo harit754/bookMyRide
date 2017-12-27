@@ -9,7 +9,7 @@ var BookingSchema = mongoose.Schema({
     cabType: String,
     pickupLocation: String,
     destination: String,
-    fare: String,
+    fare: Number,
     time: String,
     date: String
 });

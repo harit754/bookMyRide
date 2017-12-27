@@ -10,4 +10,19 @@ angular.module('bookMyRide').controller('NavbarCtrl', ['$scope', '$location', 'A
 
     }
 
+    $scope.home = function () {
+        if ($localStorage.user.role.toLowerCase() == 'user') {
+            $location.path('/booking');
+        }
+        else if ($localStorage.user.role.toLowerCase() == 'driver') {
+            $location.path('/driver');
+        }
+        else if ($localStorage.user.role.toLowerCase() == 'admin') {
+            $location.path('/tariff');
+        }
+        else {
+            $location.path('/');
+        }
+    }
+
 }]);
